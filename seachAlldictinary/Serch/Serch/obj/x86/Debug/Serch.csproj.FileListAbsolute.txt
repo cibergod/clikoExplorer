@@ -1,4 +1,0 @@
-D:\Develop\github\clikoExplorer\seachAlldictinary\Serch\Serch\bin\Debug\Serch.exe
-D:\Develop\github\clikoExplorer\seachAlldictinary\Serch\Serch\bin\Debug\Serch.pdb
-D:\Develop\github\clikoExplorer\seachAlldictinary\Serch\Serch\obj\x86\Debug\Serch.exe
-D:\Develop\github\clikoExplorer\seachAlldictinary\Serch\Serch\obj\x86\Debug\Serch.pdb
