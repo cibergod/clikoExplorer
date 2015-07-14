@@ -1,0 +1,476 @@
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="Digest" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Digest">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="LastUpdate" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="patch" type="xs:string" minOccurs="0" />
+                <xs:element name="Kliko_date" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <Digest>
+    <Name>152-T</Name>
+    <LastUpdate>2014-09-11T05:44:17.8201677+04:00</LastUpdate>
+    <patch>O:\152-T\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>162T_01</Name>
+    <LastUpdate>2014-09-22T20:23:09.8805518+04:00</LastUpdate>
+    <patch>O:\162T_01\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>25.05.2012 7:54:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>177-T</Name>
+    <LastUpdate>2014-10-09T05:45:09.3853183+04:00</LastUpdate>
+    <patch>O:\177-T\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>25.05.2012 7:54:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>63-T</Name>
+    <LastUpdate>2014-09-16T06:24:14.046112+04:00</LastUpdate>
+    <patch>O:\63-T\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F101D</Name>
+    <LastUpdate>2015-07-03T10:04:17.4204979+03:00</LastUpdate>
+    <patch>O:\F101D\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F102T</Name>
+    <LastUpdate>2014-06-06T05:18:05.2371481+04:00</LastUpdate>
+    <patch>O:\F102T\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F110</Name>
+    <LastUpdate>2015-04-07T08:17:19.8147644+03:00</LastUpdate>
+    <patch>O:\F110\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F115-117</Name>
+    <LastUpdate>2015-02-05T09:28:35.405858+03:00</LastUpdate>
+    <patch>O:\F115-117\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F116</Name>
+    <LastUpdate>2014-07-21T06:02:24.8563669+04:00</LastUpdate>
+    <patch>O:\F116\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F118</Name>
+    <LastUpdate>2015-04-07T08:00:49.8044653+03:00</LastUpdate>
+    <patch>O:\F118\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F122</Name>
+    <LastUpdate>2014-09-01T05:38:38.3234459+04:00</LastUpdate>
+    <patch>O:\F122\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F125</Name>
+    <LastUpdate>2013-07-18T06:47:16.0762902+04:00</LastUpdate>
+    <patch>O:\F125\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>25.05.2012 7:54:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F126</Name>
+    <LastUpdate>2015-06-11T06:36:15.5514299+03:00</LastUpdate>
+    <patch>O:\F126\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F127</Name>
+    <LastUpdate>2015-03-31T07:12:05.5453861+03:00</LastUpdate>
+    <patch>O:\F127\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F128</Name>
+    <LastUpdate>2015-02-06T07:15:01.9440458+03:00</LastUpdate>
+    <patch>O:\F128\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F129</Name>
+    <LastUpdate>2015-02-03T08:45:53.8068453+03:00</LastUpdate>
+    <patch>O:\F129\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>Ответы</Name>
+    <LastUpdate>2007-04-09T07:56:44+04:00</LastUpdate>
+    <patch>O:\F129\Ответы\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>01.01.1601 0:00:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F155</Name>
+    <LastUpdate>2015-04-07T08:01:49.8121518+03:00</LastUpdate>
+    <patch>O:\F155\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F157</Name>
+    <LastUpdate>2015-01-30T08:10:18.453847+03:00</LastUpdate>
+    <patch>O:\F157\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>25.05.2012 7:54:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F202</Name>
+    <LastUpdate>2014-07-03T05:29:57.1186917+04:00</LastUpdate>
+    <patch>O:\F202\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>25.05.2012 7:54:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F203</Name>
+    <LastUpdate>2014-03-07T05:31:29.7633136+04:00</LastUpdate>
+    <patch>O:\F203\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F250</Name>
+    <LastUpdate>2013-12-16T05:14:20.0976253+04:00</LastUpdate>
+    <patch>O:\F250\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F251</Name>
+    <LastUpdate>2015-04-03T08:40:15.8383311+03:00</LastUpdate>
+    <patch>O:\F251\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F257</Name>
+    <LastUpdate>2015-01-27T06:51:12.2699493+03:00</LastUpdate>
+    <patch>O:\F257\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F258</Name>
+    <LastUpdate>2014-10-09T06:33:42.6554136+04:00</LastUpdate>
+    <patch>O:\F258\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F259</Name>
+    <LastUpdate>2015-03-30T14:11:25.654866+03:00</LastUpdate>
+    <patch>O:\F259\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F260</Name>
+    <LastUpdate>2015-04-09T14:21:42.3516835+03:00</LastUpdate>
+    <patch>O:\F260\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F302-F316</Name>
+    <LastUpdate>2015-04-07T08:02:09.1829395+03:00</LastUpdate>
+    <patch>O:\F302-F316\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F345-P</Name>
+    <LastUpdate>2015-07-13T11:53:53.5177619+03:00</LastUpdate>
+    <patch>O:\F345-P\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>30.06.2015 9:46:40</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F350</Name>
+    <LastUpdate>2015-01-19T08:30:18.7433564+03:00</LastUpdate>
+    <patch>O:\F350\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F401</Name>
+    <LastUpdate>2015-07-13T06:45:54.6198156+03:00</LastUpdate>
+    <patch>O:\F401\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>30.06.2015 9:46:40</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F402</Name>
+    <LastUpdate>2015-02-17T09:12:18.9608777+03:00</LastUpdate>
+    <patch>O:\F402\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F404</Name>
+    <LastUpdate>2014-01-10T06:43:33.4923841+04:00</LastUpdate>
+    <patch>O:\F404\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>25.05.2012 7:54:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F405</Name>
+    <LastUpdate>2014-04-16T06:28:38.0686615+04:00</LastUpdate>
+    <patch>O:\F405\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F406</Name>
+    <LastUpdate>2011-08-03T08:31:11.734+04:00</LastUpdate>
+    <patch>O:\F406\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F407</Name>
+    <LastUpdate>2015-05-12T06:24:25.6047523+03:00</LastUpdate>
+    <patch>O:\F407\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F410</Name>
+    <LastUpdate>2015-07-13T06:47:23.5599274+03:00</LastUpdate>
+    <patch>O:\F410\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>30.06.2015 9:46:40</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F601</Name>
+    <LastUpdate>2015-02-18T07:07:20.5667557+03:00</LastUpdate>
+    <patch>O:\F601\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F634</Name>
+    <LastUpdate>2015-01-30T08:11:30.4345958+03:00</LastUpdate>
+    <patch>O:\F634\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F639</Name>
+    <LastUpdate>2014-01-09T04:59:49.9987231+04:00</LastUpdate>
+    <patch>O:\F639\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>25.05.2012 7:54:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F652</Name>
+    <LastUpdate>2014-05-28T05:34:41.7631257+04:00</LastUpdate>
+    <patch>O:\F652\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>25.05.2012 7:54:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F664</Name>
+    <LastUpdate>2014-01-29T11:06:02.0890641+04:00</LastUpdate>
+    <patch>O:\F664\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F664D</Name>
+    <LastUpdate>2015-07-13T07:06:52.6403181+03:00</LastUpdate>
+    <patch>O:\F664D\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>30.06.2015 9:46:40</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>F711</Name>
+    <LastUpdate>2015-06-25T06:59:43.3600124+03:00</LastUpdate>
+    <patch>O:\F711\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>30.06.2015 9:46:40</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FISV</Name>
+    <LastUpdate>2010-03-16T06:07:13.3997759+03:00</LastUpdate>
+    <patch>O:\FISV\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>14.01.2010 7:55:36</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR</Name>
+    <LastUpdate>2014-12-30T09:31:35.044449+03:00</LastUpdate>
+    <patch>O:\FOR\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR37</Name>
+    <LastUpdate>2008-10-24T06:48:35+04:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR37\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>01.01.1601 0:00:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR38</Name>
+    <LastUpdate>2009-03-04T11:19:47+03:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR38\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>15.04.2007 11:15:16</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR39</Name>
+    <LastUpdate>2009-03-04T11:19:47+03:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR39\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>15.04.2007 11:15:16</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR40</Name>
+    <LastUpdate>2009-05-18T05:09:50+04:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR40\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>15.04.2007 11:15:16</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR43</Name>
+    <LastUpdate>2010-01-27T07:26:40.9726471+03:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR43\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>14.01.2010 7:55:36</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR44</Name>
+    <LastUpdate>2010-03-01T06:25:28.439233+03:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR44\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>14.01.2010 7:55:36</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR45</Name>
+    <LastUpdate>2011-02-28T07:02:06.788+03:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR45\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>05.05.2010 11:40:10</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR46</Name>
+    <LastUpdate>2011-03-31T04:54:50.167+04:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR46\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>05.05.2010 11:40:10</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR47</Name>
+    <LastUpdate>2011-05-05T12:00:29.622+04:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR47\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>05.05.2010 11:40:10</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR48</Name>
+    <LastUpdate>2011-11-17T05:06:33.101+04:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR48\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>05.05.2010 11:40:10</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR49</Name>
+    <LastUpdate>2013-02-20T06:05:58.6400398+04:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR49\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>10.01.2012 14:35:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR50</Name>
+    <LastUpdate>2013-03-19T08:50:39.5278281+04:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR50\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>23.03.2012 9:09:58</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR51</Name>
+    <LastUpdate>2013-04-12T05:40:18.9993571+04:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR51\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>25.05.2012 7:54:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR52</Name>
+    <LastUpdate>2013-07-08T09:47:17.187151+04:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR52\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>25.05.2012 7:54:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR_VNE</Name>
+    <LastUpdate>2008-10-15T05:47:26+04:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR_VNE\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>15.04.2007 11:15:16</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>FOR_V_01</Name>
+    <LastUpdate>2013-02-20T06:05:04.6143123+04:00</LastUpdate>
+    <patch>O:\FOR\Предыдущие версии\FOR_V_01\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>10.01.2012 14:35:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>IZVKO</Name>
+    <LastUpdate>2005-10-18T07:22:53+04:00</LastUpdate>
+    <patch>O:\IZVKO\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>05.05.2010 11:40:10</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>KONS_MSFO</Name>
+    <LastUpdate>2015-06-29T09:25:10.9452746+03:00</LastUpdate>
+    <patch>O:\KONS_MSFO\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>LORO</Name>
+    <LastUpdate>2014-07-31T07:47:04.7961837+04:00</LastUpdate>
+    <patch>O:\LORO\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>MSFO_AZ_PZ</Name>
+    <LastUpdate>2015-07-10T07:57:26.9655377+03:00</LastUpdate>
+    <patch>O:\MSFO_AZ_PZ\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>30.06.2015 9:46:40</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>PD</Name>
+    <LastUpdate>2012-04-05T07:37:07.5047787+04:00</LastUpdate>
+    <patch>O:\PD\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>23.03.2012 9:09:58</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>PMSI</Name>
+    <LastUpdate>2012-06-25T06:28:43.617611+04:00</LastUpdate>
+    <patch>O:\PMSI\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>PZ_PUBL</Name>
+    <LastUpdate>2012-03-30T05:12:25.3524584+04:00</LastUpdate>
+    <patch>O:\PZ_PUBL\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>25.05.2012 7:54:42</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>TEST-F251</Name>
+    <LastUpdate>2014-10-06T08:04:31.5564894+04:00</LastUpdate>
+    <patch>O:\TEST-F251\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>23.03.2012 9:09:58</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>TEST-F401-20050119</Name>
+    <LastUpdate>2015-07-13T06:54:51.163318+03:00</LastUpdate>
+    <patch>O:\TEST-F401-20050119\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>30.06.2015 9:46:40</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>TEST-F664-20050124</Name>
+    <LastUpdate>2014-01-29T11:06:02.0890641+04:00</LastUpdate>
+    <patch>O:\TEST-F664-20050124\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>TEST-F711</Name>
+    <LastUpdate>2015-06-25T07:08:31.3413608+03:00</LastUpdate>
+    <patch>O:\TEST-F711\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>30.06.2015 9:46:40</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>БАЛАНС</Name>
+    <LastUpdate>2015-04-07T08:18:49.7957191+03:00</LastUpdate>
+    <patch>O:\БАЛАНС\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>Ответы</Name>
+    <LastUpdate>2010-11-01T05:42:00.8998797+03:00</LastUpdate>
+    <patch>O:\БАЛАНС\Ответы\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>01.01.1601 0:00:00</Kliko_date>
+  </Digest>
+  <Digest>
+    <Name>ПУБЛИК</Name>
+    <LastUpdate>2015-04-29T06:41:59.7969027+03:00</LastUpdate>
+    <patch>O:\ПУБЛИК\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>04.07.2014 1:06:00</Kliko_date>
+  </Digest>
+</NewDataSet>

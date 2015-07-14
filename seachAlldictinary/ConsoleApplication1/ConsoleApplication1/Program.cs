@@ -19,7 +19,7 @@ namespace ConsoleApplication1
 
 
 
-       static DataTable digest = new DataTable();
+       static DataTable digest = new DataTable("Digest");
         static void digestInit()
         {
             //имя справочника
@@ -148,8 +148,8 @@ namespace ConsoleApplication1
             digestInit();
 
             string Filename="KLIKOCFG.DB";
-            //string patch = @"O:\";
-            string patch = @"d:\";
+            string patch = @"O:\";
+            //string patch = @"d:\";
             string[] PatchDir = Directory.GetDirectories(patch);
             try
             {
@@ -189,6 +189,12 @@ namespace ConsoleApplication1
                 }
             }
 
+          //сохраняем в xml фай таблицу
+            System.IO.StringWriter writer = new System.IO.StringWriter();
+
+            digest.WriteXml(writer, XmlWriteMode.WriteSchema, true);
+
+            File.WriteAllText(digest.TableName + ".xml", writer.ToString());
                
             Console.ReadKey();
 
