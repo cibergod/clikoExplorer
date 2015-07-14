@@ -2,3 +2,4 @@ D:\Develop\github\clikoExplorer\seachAlldictinary\ConsoleApplication1\ConsoleApp
 D:\Develop\github\clikoExplorer\seachAlldictinary\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
 D:\Develop\github\clikoExplorer\seachAlldictinary\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
 D:\Develop\github\clikoExplorer\seachAlldictinary\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+D:\Develop\github\clikoExplorer\seachAlldictinary\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache

@@ -8,6 +8,8 @@ using System.IO;
 
 using System.Threading;
 using System.Xml;
+using System.Reflection;
+
 //windows будет брать данные сирализуя их из таблиц 
 //данный класс будет работать с таблицами
 namespace ConsoleApplication1
@@ -38,12 +40,18 @@ namespace ConsoleApplication1
             column.ColumnName = "patch";
             digest.Columns.Add(column);
 
+            //путь к справочнику
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.String");
+            column.ColumnName = "Kliko_date";
+            digest.Columns.Add(column);
+
         }
 
         struct Result
         {
           public  System.String name, patch;
-          public System.DateTime T;
+          public System.DateTime T, K;
 
         };
 
@@ -61,11 +69,23 @@ namespace ConsoleApplication1
                 return name.Name;
             }
 
+            
+
             static DateTime getDataUpdate(string patch)
             {
                 return File.GetLastWriteTimeUtc(patch);
             }
 
+      
+
+            static DateTime getDataKlico(string patch)
+            {
+
+                DirectoryInfo name = Directory.GetParent(patch);
+                name = Directory.GetParent(name.Parent.FullName);
+
+                return File.GetLastWriteTimeUtc(name.FullName + @"\KLIKO.EXE");
+            }
            
              public void GetSearch()
             {
@@ -79,11 +99,12 @@ namespace ConsoleApplication1
 
                         foreach (string L in S)
                         {
+                            getDataKlico(L);
                             Result R;
                             R.name = getDigestName(L);
                             R.patch = L;
                             R.T = getDataUpdate(L);
-
+                            R.K = getDataKlico(L);
                             ROW.Add(R);
                         }
                     }
@@ -127,8 +148,8 @@ namespace ConsoleApplication1
             digestInit();
 
             string Filename="KLIKOCFG.DB";
-            string patch = @"D:\";
-
+            //string patch = @"O:\";
+            string patch = @"d:\";
             string[] PatchDir = Directory.GetDirectories(patch);
             try
             {
@@ -163,6 +184,7 @@ namespace ConsoleApplication1
                     Z["Name"] = R.name;
                     Z["patch"] = R.patch;
                     Z["LastUpdate"] = R.T;
+                    Z["Kliko_date"] = R.K;
                     digest.Rows.Add(Z);
                 }
             }
