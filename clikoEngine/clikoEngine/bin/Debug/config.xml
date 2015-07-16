@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ConfigFilds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <REM_Patch_Cliko>путь к дирекотрии с отчетностями у нас диск d:\Cliko\</REM_Patch_Cliko>
+  <Patch_Cliko>D:\</Patch_Cliko>
+  <REM_CFG_file>имя файла конфигурации вдруг поменяеться по умолчанию KLIKOCFG.DB</REM_CFG_file>
+  <CFG_file>KLIKOCFG.DB</CFG_file>
+  <REM_SPR_DIR>путь к папке со справочниками по умолчанию SPR</REM_SPR_DIR>
+  <SPR_DIR>SPR</SPR_DIR>
+  <REM_SPR_TAble>имя таблицы из которой читаем данные о справочниках </REM_SPR_TAble>
+  <SPR_TAble>rsprav</SPR_TAble>
+  <REM_DSN_ODBC>DSN имя в ODBC для связки с драйвером Paradox</REM_DSN_ODBC>
+  <DSN_ODBC>Config</DSN_ODBC>
+</ConfigFilds>

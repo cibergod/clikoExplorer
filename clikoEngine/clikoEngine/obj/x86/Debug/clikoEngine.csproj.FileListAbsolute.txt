@@ -1,0 +1,5 @@
+D:\Develop\clikoEngine\clikoEngine\bin\Debug\clikoEngine.exe
+D:\Develop\clikoEngine\clikoEngine\bin\Debug\clikoEngine.pdb
+D:\Develop\clikoEngine\clikoEngine\obj\x86\Debug\clikoEngine.exe
+D:\Develop\clikoEngine\clikoEngine\obj\x86\Debug\clikoEngine.pdb
+D:\Develop\clikoEngine\clikoEngine\obj\x86\Debug\clikoEngine.csprojResolveAssemblyReference.cache

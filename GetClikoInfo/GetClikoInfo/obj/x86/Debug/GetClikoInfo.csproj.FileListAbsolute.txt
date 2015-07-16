@@ -1,0 +1,4 @@
+D:\Develop\GetClikoInfo\GetClikoInfo\bin\Debug\GetClikoInfo.exe
+D:\Develop\GetClikoInfo\GetClikoInfo\bin\Debug\GetClikoInfo.pdb
+D:\Develop\GetClikoInfo\GetClikoInfo\obj\x86\Debug\GetClikoInfo.exe
+D:\Develop\GetClikoInfo\GetClikoInfo\obj\x86\Debug\GetClikoInfo.pdb

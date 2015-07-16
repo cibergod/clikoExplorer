@@ -1,0 +1,5 @@
+ 
+ 
+Dim oShell, oExec
+Set oShell = CreateObject("WScript.Shell")
+Set oExec = oShell.Exec("powercfg -h off")

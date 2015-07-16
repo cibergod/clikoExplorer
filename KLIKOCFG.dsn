@@ -1,0 +1,22 @@
+[ODBC]
+DRIVER=Microsoft Paradox Driver (*.db )
+UID=admin
+UserCommitSync=Yes
+Threads=3
+SafeTransactions=0
+ParadoxUserName=admin
+ParadoxNetStyle=4.x
+ParadoxNetPath=C:\Windows\system32
+PageTimeout=5
+MaxScanRows=8
+MaxBufferSize=2048
+FIL=Paradox 5.X
+DriverId=538
+DefaultDir=D:\Develop
+CollatingSequence=ASCII
+
+
+d:\Cliko\BIN\DATA\CFG\
+
+
+Dsn=Config;dbq=d:\Cliko\F407\DATA\CFG\;defaultdir=d:\Cliko\F407\DATA\CFG\;driverid=538;fil=Paradox 5.X;maxbuffersize=2048;pagetimeout=5"
