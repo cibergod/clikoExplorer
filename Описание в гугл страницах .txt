@@ -1,0 +1,674 @@
+<br>
+<div>&nbsp; &nbsp; На самом деле в C# есть прекрасная библиотека под названием&nbsp;<span style="background-color:transparent"><font color="#0000ff"><b>System</b></font>.<b><font color="#0000ff">IO</font></b>; В которой есть две замечательные функции:</span></div>
+<div><span style="background-color:transparent">
+<div><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22C%23+%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F+GetDirectories+%D0%B8+GetFiles%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=_y0KbZJMbYX9xJQitR751TpPe7w" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div><font color=&quot;#3538761d&quot;><b>&nbsp;//поиск всех директорий по указанному пути</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;>String</font>[] ListDirectory = <font color=&quot;#350000ff&quot;><b>Directory</b></font>.<font color=&quot;#353d85c6&quot;><b>GetDirectories</b></font>(<font color=&quot;#35ff0000&quot;><b>&quot;имя директории &quot;</b></font>, <font color=&quot;#35ff0000&quot;><b>&quot;маска поиска &quot;</b></font>, <b><font color=&quot;#350000ff&quot;>SearchOption</font></b>.AllDirectories)#59</div>
+<div><font color=&quot;#3538761d&quot;><b>//поиск всех нужных файлов по указанному пути</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;>String</font>[] ListFile =<font color=&quot;#350000ff&quot;><b>Directory</b></font>.<font color=&quot;#353d85c6&quot;><b>GetFiles</b></font>(<font color=&quot;#35ff0000&quot;><b>&quot;имя директории&quot;</b></font>,<font color=&quot;#35ff0000&quot;><b> &quot;маска поиска&quot;</b></font>, <font color=&quot;#350000ff&quot;><b>SearchOption</b></font>.AllDirectories)#59</div>
+<div><br />
+</div>
+<div><br />
+</div>
+</div>
+;title:C#35 функция GetDirectories и GetFiles;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></div>
+<br>
+</span></div>
+<div><span style="background-color:transparent"><span>&nbsp; &nbsp; Обе функции получают на входе имя стартовой директории и маску по которой искать данные например для файлов это будет *.* - все файлы или любая другая а благодаря флагу&nbsp;</span></span><span style="background-color:transparent">SearchOption.AllDirectories можно запускать поиск не только в указанной директории ( папке) но и во вложенных директориях (папках).</span></div>
+<div><span style="background-color:transparent"><br>
+</span></div>
+<div><span style="background-color:transparent"><span>&nbsp; &nbsp; То есть если Вам нужно найти файл или папку то можно воспользоваться данными функциями и ОС windows с радостью запустит поиск и все найдет. Тогда о чем тут разговор. Все просто если у Вас в папке в которой&nbsp;ищешь&nbsp;данные,&nbsp;огромное количество под папок например больше 100 то система будет очень медленно&nbsp;выполнять&nbsp;поиск в них папках столкнувшись с данной проблемой.&nbsp;</span></span></div>
+<div><span style="background-color:transparent"><span><br>
+</span></span></div>
+<div><span style="background-color:transparent"><span><span>&nbsp; &nbsp; Поэтому я решил проблему медленного поиска с помощью простой рекурсии. На каждую папку мы будем запускать отдельный поток который будет максимально быстро искать данные только в этой папке. Если он будет находить&nbsp;</span></span></span><span style="font-size:13.3333330154419px;background-color:transparent">вложенные директории (папки)</span><span style="font-size:10pt;background-color:transparent">&nbsp;в папке по которой производит поиск он будет запускать отдельный поток для поиска в этой папке.</span></div>
+<div><span style="font-size:10pt;background-color:transparent"><br>
+</span></div>
+<div><span style="background-color:transparent"><span style="font-size:10pt">&nbsp; &nbsp; В итоге система будет не последовательно искать в каждой папке а выполнять&nbsp;</span>параллельно<span style="font-size:10pt">&nbsp;это действие везде. Что по понятным причинам и загружает систему но и выполняет желаемое действие поиска максимально быстро.</span></span></div>
+<div><span style="background-color:transparent"><br>
+</span></div>
+<div><span style="background-color:transparent"><span>&nbsp; &nbsp; Приступим к написанию данного класса в C# для этого создадим новое консольное приложение.</span><br>
+</span></div>
+<div><span style="background-color:transparent"><span>
+<div style="display:block;text-align:center;margin-right:auto;margin-left:auto"><a href="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/1.png?attredirects=0" imageanchor="1"><img border="0" height="88" src="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/1.png" width="400"></a></div>
+<div style="display:block;text-align:center;margin-right:auto;margin-left:auto"><br>
+</div>
+<span>&nbsp; &nbsp; Следующим выбираем папку для приложения и называем как будет понятнее например FileFinder</span><br>
+</span></span></div>
+<div><span style="background-color:transparent"><span><span>
+<div style="display:block;text-align:center;margin-right:auto;margin-left:auto"><a href="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/2.png?attredirects=0" imageanchor="1"><img border="0" height="137" src="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/2.png" width="400"></a></div>
+<span>&nbsp;&nbsp; &nbsp;</span><br>
+</span></span></span></div>
+<div><span style="background-color:transparent"><span><span><span><span>&nbsp; &nbsp; Итак созданный проект будет отправной точкой для создания нашего класса.&nbsp;</span></span></span></span></span></div>
+<div><span style="background-color:transparent"><span><span><span><span>
+<div style="display:block;text-align:center;margin-right:auto;margin-left:auto"><a href="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/3.png?attredirects=0" imageanchor="1"><img border="0" height="315" src="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/3.png" width="400"></a></div>
+<br>
+</span></span></span></span></span></div>
+<div><span style="background-color:transparent"><span><span><span><span><span>&nbsp;&nbsp; &nbsp;</span>Класс будет размещаться в отдельном файле что в дальнейшем позволит его использовать во множестве приложений где он сможет понадобиться. Для добавления класса в проект необходимо в обозревателе решений нажать на корень проекта правой кнопкой мыши и нажать добавить новый класс</span><br>
+</span></span></span></span></div>
+<div><span style="background-color:transparent"><span><span><span><span>
+<div style="display:block;text-align:center;margin-right:auto;margin-left:auto"><a href="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/4.png?attredirects=0" imageanchor="1"><img border="0" height="165" src="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/4.png" width="400"></a></div>
+<div style="display:block;text-align:center;margin-right:auto;margin-left:auto"><br>
+</div>
+<span>&nbsp; &nbsp; Система спросит как назвать класс. Я назвал его&nbsp;</span></span></span></span></span></span><span style="background-color:transparent">DirectoryAndFileFind.cs</span></div>
+<div><span style="background-color:transparent"><span><span><span><span><span>
+<div style="display:block;text-align:center;margin-right:auto;margin-left:auto"><a href="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/5.png?attredirects=0" imageanchor="1"><img border="0" height="87" src="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/5.png" width="400"></a></div>
+<span>&nbsp; &nbsp; По сути среда разработки просто добавит новый файл с описанием класса и свяжет его с нашим проектом через систему&nbsp;конфигурационных&nbsp;файлов. И мы сможем его вызывать из главного файла когда нам будет нужно. особенность данного файла&nbsp;заключается&nbsp;в том что вы можете подключать&nbsp;все нужные библиотеки прямо в классе. А основной код о них может даже и не знать. В тоже время написав один раз исходный файл класса его можно&nbsp;подключать&nbsp;ко всем Вашим проектам и&nbsp;если вдруг вы в нем нашли какую то ошибку то исправив ее один раз можно исправить везде в проектах ее.</span></span></span></span></span></span></span></div>
+<div><span style="background-color:transparent"><span><span><span><span><span><span><span>&nbsp; &nbsp; Итак мы создали пустой класс:&nbsp;</span><br>
+</span></span></span></span></span></span></span></div>
+<div><span style="background-color:transparent"><span><span><span><span><span><span>
+<div style="display:block;text-align:center;margin-right:auto;margin-left:auto"><a href="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/6.png?attredirects=0" imageanchor="1"><img border="0" height="303" src="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/6.png" width="400"></a></div>
+<span>&nbsp; &nbsp; Итак мы будем получать на входе имя файла / папки и директорию в которой нужно искать данный файл.На выходе будем получать список папок в которых были совпадения.</span><br>
+</span></span></span></span></span></span></span></div>
+<div><span style="background-color:transparent"><span><span><span><span><span><span><span><span>&nbsp; &nbsp; Для передачи начальных значений опишем структуру InputInfo в которой опишем что хотим искать.</span><br>
+</span></span></span></span></span></span></span></span></div>
+<div><span style="background-color:transparent"><span><span><span><span><span><span><span><span>&nbsp;&nbsp; &nbsp;
+<table border="0" bordercolor="#000" cellspacing="0" style="border-collapse:collapse;border-color:rgb(136,136,136);border-width:0px">
+<tbody>
+<tr>
+<td style="width:50%;height:21px"><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22C%23+%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0+inputinfo%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=ZXrj-jOEsQYeHOcwWUNXmClBOuk" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div><b><font color=&quot;#3538761d&quot;>//структура описания входных параметров</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>struct </b></font>inputinfo&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=&quot;#3538761d&quot;> //от куда начинать поиск</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#353d85c6&quot;><b>string </b></font>StartPatchFilder#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //если ищем директорию то передаем ее название</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#353d85c6&quot;><b>string </b></font>SearchFolder#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //если ищем файл то передаем его название</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#353d85c6&quot;><b>string </b></font>SearchFile#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }</div>
+</div>
+;title:C#35 структура inputinfo;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></td>
+<td style="width:50%;height:21px">
+<div style="display:block;text-align:left"><a href="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/7.png?attredirects=0" imageanchor="1"><img border="0" src="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/7.png" style="width:100%"></a></div>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+</span><br>
+</span></span></span></span></span></span></span></span></div>
+<div><span style="background-color:transparent"><span><span><span><span><span><span><span>
+<div><span>&nbsp; &nbsp; Далее опишем выходные данные тоже в виде структуры допустим нужно хранить имя папки где нашли файл, дату изменения файла, полный путь к файлу, &nbsp;</span><br>
+</div>
+<br>
+</span></span></span></span></span></span></span></span></div>
+<div><span style="background-color:transparent"><span><span><span><span><span><span><span><br>
+</span></span></span></span></span></span></span></span></div>
+<div>
+<table border="0" bordercolor="#000" cellspacing="0" style="font-size:13.3333330154419px;border-collapse:collapse;border-color:rgb(136,136,136);border-width:0px">
+<tbody>
+<tr>
+<td style="width:500px;height:21px"><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22C%23+%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0+OutputInfo%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=zJpXb2GI9ucYqGy1yAY7kQ8ymJM" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div>
+<div><font color=&quot;#3538761d&quot;><b>&nbsp;//структура для хранения результатов поиска&nbsp;</b></font></div>
+<div><font color=&quot;#3538761d&quot;>&nbsp; &nbsp;</font> &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>struct</b></font> OutputInfo&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//имя папки в которой найден файл</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#350b5394&quot;><b>string </b></font>NameFolder#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //полный путь к файлу</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#350b5394&quot;><b>string </b></font>FullPatchFilder#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //дата последнего обновления файла в папке</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#350b5394&quot;><b>DateTime </b></font>DateFile#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }#59</div>
+</div>
+</div>
+;title:C#35 структура OutputInfo;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></td>
+<td style="width:238px;height:21px"><br>
+<div style="display:block;text-align:left"><a href="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/8.png?attredirects=0" imageanchor="1"><img border="0" src="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/8.png" style="width:100%"></a></div>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><span style="background-color:transparent"><span><span><span><span><span><span><span>&nbsp;&nbsp; &nbsp;</span><br>
+</span></span></span></span></span></span></span></div>
+<div><span style="background-color:transparent"><span><span><span><span><span><span><span>&nbsp; &nbsp; Для того чтобы запустить поток в приложении нужно в него передать функцию которая не принимает никаких значений и не возвращает ничего в виде результата. Этот недостаток ведет к тому что в функцию нельзя на прямую передать какие то данные. Поэтому для функции поиска директорий и файлов мы сделаем обертку в виде класса. Это нам позволит внутри класса объявить несколько переменных в которые мы передадим нужные нам значения.и функция при запуске внутри класса будет видеть эти значения и их использовать для своей работы. Итак опишем данный класс следующим образом.</span><br>
+</span></span></span></span></span></span></span></div>
+<div><span style="background-color:transparent"><span><span><span><span><span><span><br>
+</span></span></span></span></span></span></span></div>
+<div><span style="background-color:transparent"><br>
+</span></div>
+<div>
+<table border="0" bordercolor="#000" cellspacing="0" style="font-size:13.3333330154419px;border-collapse:collapse;border-color:rgb(136,136,136);border-width:0px">
+<tbody>
+<tr>
+<td style="width:500px;height:21px"><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22C%23+%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0+OutputInfo%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=zJpXb2GI9ucYqGy1yAY7kQ8ymJM" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div>
+<div>&nbsp;<font color=&quot;#3538761d&quot;><b> //класс поиска файла или каталога в папке</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>class </b></font><font color=&quot;#353d85c6&quot;><b>Finder&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b> <font color=&quot;#3538761d&quot;>//в класс будем передавать структуру inputinfo&nbsp;</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#353d85c6&quot;><b>inputinfo</b> </font>MyInputParam#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//И ждать от него результат в виде списка найденных значений</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#350b5394&quot;>List</font>&amp;lt#59OutputInfo&amp;gt#59 OutputData = <font color=&quot;#350000ff&quot;><b>new </b></font><font color=&quot;#353d85c6&quot;>List</font>&amp;lt#59OutputInfo&amp;gt#59()#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=&quot;#3538761d&quot;>//сама функция поиска файлов и каталогов</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#350b5394&quot;>void </font><font color=&quot;#35073763&quot;><b>find</b></font>()</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }</div>
+</div>
+</div>
+;title:C#35 структура OutputInfo;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></td>
+<td style="width:238px;height:21px"><br>
+<div></div>
+<div>
+<div style="display:block;text-align:left"><a href="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/9.png?attredirects=0" imageanchor="1"><img border="0" src="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/9.png" style="width:100%"></a></div>
+<br>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><span style="background-color:transparent"><br>
+</span></div>
+<div><span style="background-color:transparent"><span>&nbsp; &nbsp; Отлично теперь опишем процесс поиска файлов и директорий в указанном месте. Для этого опишем следующие действия. Нужно посмотреть что мы хотим искать файлы или папки или то и то далее получить список файлов если нужны файлы и список папок если нужны папки.</span><br>
+</span></div>
+<div><span style="background-color:transparent"><br>
+</span></div>
+<div>
+<div style="font-size:13.3333330154419px">
+<table border="0" bordercolor="#000" cellspacing="0" style="font-size:13.3333330154419px;border-collapse:collapse;border-color:rgb(136,136,136);border-width:0px">
+<tbody>
+<tr>
+<td style="width:500px;height:21px"><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22C%23+%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0+OutputInfo%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=zJpXb2GI9ucYqGy1yAY7kQ8ymJM" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div>
+<div><font color=&quot;#3538761d&quot;><b>&nbsp;//класс поиска файла или каталога в папке</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>class </b></font><font color=&quot;#350b5394&quot;>Finder&nbsp;</font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //в класс будем передавать структуру inputinfo&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#350b5394&quot;>inputinfo </font>MyInputParam#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //И ждать от него результат в виде списка найденных значений</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#350b5394&quot;>List</font>&amp;lt#59OutputInfo&amp;gt#59 OutputData = <font color=&quot;#350000ff&quot;><b>new </b></font><font color=&quot;#350b5394&quot;>List</font>&amp;lt#59OutputInfo&amp;gt#59()#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //сама функция поиска файлов и каталогов</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#350b5394&quot;>void </font>find()</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //если мы ищем файл то выполняем команду getFile</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=&quot;#350000ff&quot;> if</font></b> (MyInputParam.SearchFile != <font color=&quot;#35cc0000&quot;><b>&quot;&quot;</b></font>)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //находим все файлы с таким именем в указанной папке</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>string</b></font>[] FindFiles = System.IO.Directory.GetFiles(MyInputParam.StartPatchFilder ,MyInputParam.SearchFile)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=&quot;#3538761d&quot;>&nbsp; //если мы ищем директорию (папку) то выполняем команду getDirectory</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;>if</font> (MyInputParam.SearchFolder!=&quot;&quot;)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //находим имена всех директорий подъодящих под наш поиск</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>string</b></font>[] FindFolder = System.IO.Directory.GetDirectories(MyInputParam.StartPatchFilder, MyInputParam.SearchFolder)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }</div>
+</div>
+</div>
+;title:C#35 структура OutputInfo;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></td>
+<td style="width:238px;height:21px"><br>
+<div></div>
+<div>
+<div></div>
+<div style="display:block;text-align:left"><a href="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/10.png?attredirects=0" imageanchor="1"><img border="0" src="https://sites.google.com/site/raznyeurokipoinformatiki/home/c/rekursivnyj-poisk-fajlov-i-papok/10.png" style="width:100%"></a></div>
+<br>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div><span style="background-color:transparent"><br>
+</span></div>
+<div><span style="background-color:transparent"><span>&nbsp; &nbsp; Следующим шагом получим все директории ( папки ) в данном каталоге если они есть то для каждой из них запустим поиск файла или папки. Для этого объявим этот же класс в цикле зададим ему новые параметры поиска и запустим функцию поиска заново. Таким образом наш алгоритм будет запускать функцию поиска столько раз сколько он найдет встроенных директорий.</span><br>
+</span></div>
+<div><span style="background-color:transparent">
+<div><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22%D0%A1%23+%D0%BE%D0%BF%D0%B8%D1%81%D1%8B%D0%B2%D0%B0%D0%B5%D0%BC+%D0%BF%D0%BE%D0%BB%D1%8F+%D0%B8+%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8E+%D1%80%D0%B5%D0%BA%D1%83%D1%80%D1%81%D0%B8%D0%B2%D0%BD%D0%BE%D0%B3%D0%BE+%D0%BF%D0%BE%D0%B8%D1%81%D0%BA%D0%B0+%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2/%D0%BF%D0%B0%D0%BF%D0%BE%D0%BA%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=NaHyyjikW2GaKI1fwV8a7cUx12Y" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div><b><font color=&quot;#3538761d&quot;>&nbsp; //класс поиска файла или каталога в папке</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>class </b></font>Finder&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=&quot;#3538761d&quot;> //в класс будем передавать структуру inputinfo&nbsp;</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#350b5394&quot;>inputinfo </font>MyInputParam#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=&quot;#3538761d&quot;> //И ждать от него результат в виде списка найденных значений</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font>List&amp;lt#59OutputInfo&amp;gt#59 OutputData = <font color=&quot;#350000ff&quot;><b>new </b></font>List&amp;lt#59OutputInfo&amp;gt#59()#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //сама функция поиска файлов и каталогов</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#350b5394&quot;><b>void </b></font>find()</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=&quot;#3538761d&quot;> //если мы ищем файл то выполняем команду getFile</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (MyInputParam.SearchFile != &quot;&quot;)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //находим все файлы с таким именем в указанной папке</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; string[] FindFiles = System.IO.Directory.GetFiles(MyInputParam.StartPatchFilder ,MyInputParam.SearchFile)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=&quot;#3538761d&quot;>//если мы ищем директорию (папку) то выполняем команду </font></b>getDirectory</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (MyInputParam.SearchFolder!=&quot;&quot;)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=&quot;#3538761d&quot;> //находим имена всех директорий подъодящих под наш поиск</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; string[] FindFolder = System.IO.Directory.GetDirectories(MyInputParam.StartPatchFilder, MyInputParam.SearchFolder)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//находим все директории по указанному пути</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; string[] DirectroyList = System.IO.Directory.GetDirectories(MyInputParam.SearchFolder)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //перебираем каждую из найденных директорий в цикле</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; foreach (string SelectDir in DirectroyList)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=&quot;#3538761d&quot;> //объявляем новый элемент класса DirectoryAndFileFind</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Finder Finder = new Finder()#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=&quot;#3538761d&quot;> //заполняем параметры класса</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Finder.MyInputParam.SearchFolder = MyInputParam.StartPatchFilder#59<font color=&quot;#3538761d&quot;><b>//заполняем имя каталога</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Finder.MyInputParam.SearchFile = MyInputParam.SearchFile#59 <font color=&quot;#3538761d&quot;><b>//заполняем имя файла</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Finder.MyInputParam.StartPatchFilder = SelectDir#59<font color=&quot;#3538761d&quot;><b> //задаем новую директорию для поиска файла / папки</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //запускаем поиск файлов</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Finder.find()#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+</div>
+;title:С#35 описываем поля и функцию рекурсивного поиска файлов/папок;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></div>
+<br>
+</span></div>
+<div><span style="background-color:transparent"><span>&nbsp; &nbsp; Отлично мы полностью повторили путь логики которая работает у функций&nbsp;</span></span><span style="background-color:transparent">GetFiles ,&nbsp;</span><span style="background-color:transparent">GetDirectories с флагом&nbsp;</span><font color="#0000ff" style="font-size:12px;background-color:transparent"><b>SearchOption</b></font><span style="font-size:12px;background-color:transparent">.AllDirectories и как бы для чего это все непонятно. Итак попробую объяснить что мы делаем дальше. А дальше мы попробуем ускорить процесс поиска данных добавив в этот процесс создание потока на каждый вызов функции Find(); Итак для этого создадим еще одну структуру в которую поместим 2 параметра.&nbsp;</span></div>
+<div><span style="font-size:12px;background-color:transparent">1) Будет ссылка на созданный нами класс для поиска в указанной папке данных</span></div>
+<div><span style="font-size:12px;background-color:transparent">2) Будет ссылка на поток который работает во время поиска данных в указанной папке.</span></div>
+<div><span style="font-size:12px;background-color:transparent">
+<div><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22%D0%A1%23+%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0+PotokSearch++%D0%B4%D0%BB%D1%8F+%D0%BF%D0%BE%D0%B8%D1%81%D0%BA%D0%B0+%D0%B2+%D0%BE%D1%82%D0%B4%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%BC+%D0%BF%D0%BE%D1%82%D0%BE%D0%BA%D0%B5%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=PvZ5aOLQ21wQvy9H_g1EejU8KRs" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div>&nbsp;<font color=&quot;#3538761d&quot;><b> //структура для хранения информации о текущем поиске файла/ папки</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>struct </b></font>PotokSearch&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //класс поиска в текущей папке</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#350b5394&quot;><b>Finder </b></font>FindCurrentFolder#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //класс потока поиска текущей папке</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font><font color=&quot;#350b5394&quot;><b>System.Threading.Thread</b></font> PotokSearchs#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }</div>
+</div>
+;title:С#35 структура PotokSearch  для поиска в отдельном потоке;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></div>
+<br>
+</span></div>
+<div><span style="background-color:transparent"><span>&nbsp; &nbsp; Следующим шагом модифицируем функцию&nbsp;</span></span><span style="background-color:transparent">find() добавив в нее список структур в которые будет помещаться каждый поток поиска в отдельной директории ( папке ) .</span></div>
+<div><span style="background-color:transparent">
+<div><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5+%D0%BF%D0%BE%D0%BB%D0%B5%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=YHXjPiRgDOReDBloktiTkmnOSZQ" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div><font color=&quot;#3538761d&quot;><b>//Объявляем список структур PotokSearch для хранения в них результатов поиска</b></font>&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;>List</font>&amp;lt#59PotokSearch&amp;gt#59 FinderList = <font color=&quot;#350000ff&quot;>new Lis</font>t&amp;lt#59PotokSearch&amp;gt#59()#59</div>
+</div>
+;title:Текстовое поле;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></div>
+<br>
+</span></div>
+<div><span style="background-color:transparent"><span>&nbsp; &nbsp; Далее в цикле перебора папок добавим строки в которых будем создавать и заполнять одну структуру для потока и поиска и добавлять ее в список импровизированных задач&nbsp;</span></span><span style="background-color:transparent">FinderList</span><span style="font-size:10pt;background-color:transparent">.</span></div>
+<div><span style="background-color:transparent">
+<div><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5+%D0%BF%D0%BE%D0%BB%D0%B5%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=YHXjPiRgDOReDBloktiTkmnOSZQ" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div>&nbsp; //сама функция поиска файлов и каталогов</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; public void find()</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //если мы ищем файл то выполняем команду getFile</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (MyInputParam.SearchFile != &quot;&quot;)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //находим все файлы с таким именем в указанной папке</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; string[] FindFiles = System.IO.Directory.GetFiles(MyInputParam.StartPatchFilder ,MyInputParam.SearchFile)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //если мы ищем директорию (папку) то выполняем команду getDirectory</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (MyInputParam.SearchFolder!=&quot;&quot;)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //находим имена всех директорий подъодящих под наш поиск</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; string[] FindFolder = System.IO.Directory.GetDirectories(MyInputParam.StartPatchFilder, MyInputParam.SearchFolder)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=&quot;#3538761d&quot;> //Объявляем список структур PotokSearch для хранения в них результатов поиска&nbsp;</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; List&amp;lt#59PotokSearch&amp;gt#59 FinderList = new List&amp;lt#59PotokSearch&amp;gt#59()#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=&quot;#3538761d&quot;> //находим все директории по указанному пути</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; string[] DirectroyList = System.IO.Directory.GetDirectories(MyInputParam.SearchFolder)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=&quot;#3538761d&quot;>//перебираем каждую из найденных директорий в цикле</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; foreach (string SelectDir in DirectroyList)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PotokSearch Task#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=&quot;#3538761d&quot;> //объявляем новый элемент класса DirectoryAndFileFind</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Task.FindCurrentFolder = new Finder()#59 <font color=&quot;#3538761d&quot;><b>//объявляем класс для поиска функции</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //переменная для задания параметров поиска заполняем ее текущими значениями</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; inputinfo InputParam = MyInputParam#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //меняем параметр выбранной директории</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; InputParam.StartPatchFilder = SelectDir#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//создаем новый поток&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Task.PotokSearchs = new System.Threading.Thread(Task.FindCurrentFolder.find)<font color=&quot;#3538761d&quot;><b>#59//передаем&nbsp;функцию&nbsp;которая должна работать в потоке</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //запускаем поиск файлов</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Task.PotokSearchs.Start()#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=&quot;#3538761d&quot;> //добавляем заполненную структуру в список&nbsp;</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FinderList.Add(Task)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+</div>
+;title:Текстовое поле;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></div>
+<br>
+</span></div>
+<div><span style="background-color:transparent"><span>&nbsp; &nbsp; Таким образом перебирая папки в директории мы не будем ждать пока функция закончит с одной а запустим поиск сразу во всех папках одновременно. Тем самым в разы ускорив нашу программу. Но рано радоваться теперь начинаеться самое интересное. В именно мы поиск то выполняем а пот сохранить его результаты мы не сохраняем. Как помним для сохранения результатов был объявлен список&nbsp;</span></span><span style="background-color:transparent">OutputData в который мы и будем помещать информацию о найденных значениях. Итак добавим данный функционал в то место функции где мы определяем что именно мы хотим найти.</span></div>
+<div><span style="background-color:transparent"><br>
+</span></div>
+<div><span style="background-color:transparent"><span>&nbsp; &nbsp; Опишем нахождение информации о файле в функции Find()</span><br>
+</span></div>
+<div><span style="background-color:transparent"><span><br>
+</span></span></div>
+<div><span style="background-color:transparent">
+<div><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22%D0%A1%23+%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D0%B5%D0%BC+%D0%B4%D0%B0%D1%82%D1%83+%D1%84%D0%B0%D0%B9%D0%BB%D0%B0+%D0%B8%D0%BC%D1%8F+%D0%BF%D0%B0%D0%BF%D0%BA%D0%B8+%D0%B3%D0%B4%D0%B5+%D0%BE%D0%BD+%D0%BD%D0%B0%D1%85%D0%BE%D0%B4%D0%B8%D1%82%D1%8C%D1%81%D1%8F+%D0%B8+%D0%BF%D0%BE%D0%BB%D0%BD%D1%8B%D0%B9+%D0%BF%D1%83%D1%82%D1%8C+%D0%BA+%D0%BF%D0%B0%D0%BF%D0%BA%D0%B5+%D0%B3%D0%B4%D0%B5+%D0%BE%D0%BD+%D0%BD%D0%B0%D1%85%D0%BE%D0%B4%D0%B8%D1%82%D1%8C%D1%81%D1%8F%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=Z26yA4s10DGskDxprGAW6ye-qwY" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div><font color=&quot;#3538761d&quot;><b>&nbsp;//если мы ищем файл то выполняем команду getFile</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=&quot;#350000ff&quot;>if</font></b> (MyInputParam.SearchFile != <font color=&quot;#35cc0000&quot;><b>&quot;&quot;</b></font>)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //находим все файлы с таким именем в указанной папке</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; string[] FindFiles = System.IO.Directory.GetFiles(MyInputParam.StartPatchFilder ,MyInputParam.SearchFile)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//перебираем результат поиска файлов</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; foreach(string F in FindFiles)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//результат будем помещать в структуру OutputInfo</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>OutputInfo </b></font><font color=&quot;#350b5394&quot;><b>Result</b></font>#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //получаем путь к файлу</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>&nbsp; System.IO.DirectoryInfo</b></font> FullPatch = System.IO.Directory.GetParent(F)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//записываем путь к файлу</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350b5394&quot;><b>Result</b></font>.FullPatchFilder = FullPatch.FullName#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//получаем дату изменения файла</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350b5394&quot;><b>Result</b></font>.DateFile = System.IO.File.GetLastWriteTimeUtc(F)#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>&nbsp; //получаем название папки где нашли файл</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350b5394&quot;><b>Result</b></font>.NameFolder = FullPatch.Name#59</div>
+<div>
+<div><span>&nbsp;&nbsp; &nbsp;<span>&nbsp;&nbsp; &nbsp;<span>&nbsp;&nbsp; &nbsp;<span>&nbsp;&nbsp; &nbsp;<span>&nbsp;&nbsp; &nbsp;<span>&nbsp;&nbsp; &nbsp;</span></span></span></span></span></span><font color=&quot;#3538761d&quot;><b>//добавляем результат в список&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OutputData.Add(Result)#59</div>
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+</div>
+;title:С#35 получаем дату файла имя папки где он находиться и полный путь к папке где он находиться;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></div>
+<br>
+</span></div>
+<div><span style="background-color:transparent"><span>&nbsp; &nbsp;&nbsp;</span></span><span style="font-size:13.3333330154419px;background-color:transparent">&nbsp;</span><span style="font-size:13.3333330154419px;background-color:transparent">Опишем нахождение информации о директории (папки) в функции Find()</span></div>
+<div><span style="font-size:13.3333330154419px;background-color:transparent">
+<div><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22%D0%A1%23+%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D0%B5%D0%BC+%D0%B8%D0%BC%D1%8F+%D0%BF%D0%B0%D0%BF%D0%BA%D0%B8,+%D0%B4%D0%B0%D1%82%D1%83+%D0%BF%D0%B0%D0%BF%D0%BA%D0%B8+%D0%B8+%D0%B5%D0%B5+%D0%BF%D0%BE%D0%BB%D0%BD%D1%8B%D0%B9+%D0%BF%D1%83%D1%82%D1%8C%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=RUJAL-VdY5X2uICMKMG8UWVdbeI" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div><b><font color=&quot;#3538761d&quot;>&nbsp;//если мы ищем директорию (папку) то выполняем команду getDirectory</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#350000ff&quot;> if </font>(MyInputParam.SearchFolder!=&quot;&quot;)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//находим имена всех директорий подходящих под наш поиск</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>string</b></font>[] <font color=&quot;#350b5394&quot;>FindFolder </font>= <font color=&quot;#350000ff&quot;><b>System.IO.Directory.GetDirectories</b></font>(MyInputParam.StartPatchFilder, MyInputParam.SearchFolder)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>&nbsp;//перебираем результат поиска файлов</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>foreach </b></font>(string D in FindFolder)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //результат будем помещать в структуру OutputInfo</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350b5394&quot;><b>OutputInfo </b></font>Result#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#350b5394&quot;><b> //получаем путь к директории</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#350000ff&quot;><b> System.IO.DirectoryInfo </b></font><font color=&quot;#350b5394&quot;>FullPatch </font>= System.IO.Directory.GetParent(D)#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //записываем путь к директории</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350b5394&quot;><b>Result</b></font>.FullPatchFilder = FullPatch.FullName#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //получаем дату изменения директории</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350b5394&quot;><b>Result</b></font>.DateFile = FullPatch.LastWriteTimeUtc#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> &nbsp; //получаем название папки&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=&quot;#350b5394&quot;>Result</font></b>.NameFolder = FullPatch.Name#59</div>
+<div>
+<div><span>&nbsp;&nbsp; &nbsp;<span>&nbsp;&nbsp; &nbsp;<span>&nbsp;&nbsp; &nbsp;<span>&nbsp;&nbsp; &nbsp;<span>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <b><font color=&quot;#3538761d&quot;>&nbsp;</font></b></span></span></span></span></span><font color=&quot;#3538761d&quot;><b>//добавляем результат в список&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OutputData.Add(Result)#59</div>
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+</div>
+;title:С#35 получаем имя папки, дату папки и ее полный путь;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></div>
+<br>
+</span></div>
+<div><span style="font-size:13.3333330154419px;background-color:transparent"><span>&nbsp; &nbsp; Итак при запуске поиска наш код найдя нужные данные сохранит их в структуре&nbsp;</span></span><span style="background-color:transparent">OutputInfo внутри своего класса. Каждый созданный класс будет хранить информацию только о своей директории в которой он производил поиск. Но мы знаем какой класс запустил поиск в дочерних директориях и мы можем прочитать информацию из родительского класса так как мы все запущенные поиски из директории сохранили в список&nbsp;</span></div>
+<div><span style="background-color:transparent">List&lt;PotokSearch&gt; FinderList = new List&lt;PotokSearch&gt;(); значит после того как мы запустили все потоки нам достаточно дождаться завершения поиска в данном классе это произойдет в тот момент когда все потоки&nbsp;</span><span style="background-color:transparent">остановятся и далее просто прочитать из каждого список найденных файлов и добавить его к себе. Таким образом собираем информацию из массива в массив из дочерних классов в&nbsp;родителей&nbsp;пока не дойдем до самого корневого потока в&nbsp;котором&nbsp;соберется&nbsp;вся информация о найденных файлах или папках.</span></div>
+<div><span style="background-color:transparent"><br>
+</span></div>
+<div><span style="background-color:transparent"><span>&nbsp; &nbsp; Итак опишем функцию которая будет принимать на входе список потоков и возвращать правду если они еще работают и ложь если они закончили выполнение поиска.</span><br>
+</span></div>
+<div><span style="background-color:transparent"><span>
+<div><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22%D0%A1%23+%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F+%D0%B7%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%B8%D1%8F+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B+%D0%B2%D1%81%D0%B5%D1%85+%D0%B4%D0%BE%D1%87%D0%B5%D1%80%D0%BD%D0%B8%D1%85+%D0%BF%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%B2%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=gOfdtmHhBaSkEpZYrw_mBgqNwcw" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div><font color=&quot;#3538761d&quot;><b>&nbsp;//функция проверки завершения поиска в дочерних папках&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>bool </b></font>TestFinsFinish(<font color=&quot;#350000ff&quot;><b>List</b></font>&amp;lt#59<font color=&quot;#350b5394&quot;><b>PotokSearch</b></font>&amp;gt#59 <font color=&quot;#353d85c6&quot;>FinderList</font>) <font color=&quot;#3538761d&quot;><b>//принимаем на входе список потоков поиска</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //по умолчанию думаем что все работа закончена</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>bool</b></font> <font color=&quot;#35073763&quot;>Result </font>= <font color=&quot;#35ff0000&quot;><b>false</b></font>#59 &nbsp;<font color=&quot;#3538761d&quot;><b>//устанавливаем ложь</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>foreach </b></font>(<font color=&quot;#350b5394&quot;><b>PotokSearch </b></font><font color=&quot;#353d85c6&quot;><b>SelectPotok </b></font>in <font color=&quot;#350b5394&quot;><b>FinderList</b></font>)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//если находим хоть один запущенный поток то ждем останавливаем поиск</b></font>&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#350000ff&quot;><b> if</b></font> (SelectPotok.PotokSearchs.ThreadState == System.Threading.ThreadState.Running)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //возвращаем правду что поиск еще работает&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Result = <font color=&quot;#350000ff&quot;><b>true</b></font>#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>&nbsp; //останавливаем цикл</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>break</b></font>#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//возвращаем результат работы функции</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>return </b></font>Result#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+</div>
+;title:С#35 функция завершения работы всех дочерних потоков;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></div>
+<br>
+</span></span></div>
+<div><span style="background-color:transparent"><span><span>&nbsp; &nbsp; Далее в функции Find запустим цикл While в котором функция&nbsp;</span></span></span><span style="background-color:transparent"><b>TestFinsFinish</b></span><span style="background-color:transparent"><b style="font-size:10pt">&nbsp;</b><span style="font-size:10pt">будет проверять результат завершения поиска. Т.е. наша функция возвращает правду только в том&nbsp;</span>случае когда процесс поиска еще идет. как только данный поиск&nbsp;прекратится цикл While тоже прекратиться и мы уже сможем собрать все данные поиска в единый список.</span></div>
+<div><span style="background-color:transparent">
+<div><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22%D0%A1%23+%D0%BE%D0%B6%D0%B8%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5+%D0%B7%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%B8%D1%8F+%D0%BF%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%B2%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=h_jALXu30wJ0F27wBtu7SNq9CTY" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div><b><font color=&quot;#3538761d&quot;>&nbsp;//ждем завершения поиска в потоках</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>while </b></font>(TestFinsFinish(FinderList)) #59</div>
+<div><br />
+</div>
+</div>
+;title:С#35 ожидание завершения потоков;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></div>
+&nbsp;<span style="font-size:10pt">&nbsp;</span></span></div>
+<div><span>&nbsp; &nbsp; Когда все потоки остановились то можно пройтись по ним и собрать найденные результаты в массив.</span><br>
+</div>
+<div><span>
+<div><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22C%23+%D1%81%D0%BE%D0%B1%D0%B8%D1%80%D0%B0%D0%B5%D0%BC+%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5+%D1%81+%D0%BF%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%B2+%D0%B2+%D0%B5%D0%B4%D0%B8%D0%BD%D1%8B%D0%B9+%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=KLjNx5nfsdW6c8bxQPUq_wnXcmA" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div><font color=&quot;#3538761d&quot;><b>&nbsp;//собираем результаты поиска в единый массив</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>foreach </b></font>(PotokSearch SelectPotok <font color=&quot;#350000ff&quot;><b>in</b></font> FinderList)<font color=&quot;#3538761d&quot;><b>//перебираем все созданные потоки</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//читаем список найденных результатов</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>foreach </b></font>(OutputInfo <b><font color=&quot;#356fa8dc&quot;>R</font></b> <font color=&quot;#350000ff&quot;><b>in</b></font> SelectPotok.FindCurrentFolder.OutputData)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //записываем их в текущем классе в результат</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OutputData.Add(<font color=&quot;#356fa8dc&quot;><b>R</b></font>)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+</div>
+;title:C#35 собираем данные с потоков в единый массив;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></div>
+<br>
+</span></div>
+<div><span><span>&nbsp; &nbsp; В целом вот класс и закончен и выглядит следующим образом.</span></span></div>
+<div><span><span>
+<div><img src="https://www.google.com/chart?chc=sites&amp;cht=d&amp;chdp=sites&amp;chl=%5B%5B%D0%A2%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9+%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82'%3D20'f%5Cv'a%5C%3D0'10'%3D499'0'dim'%5Cbox1'b%5CF6F6F6'fC%5CF6F6F6'eC%5C0'sk'%5C%5B%22C%23+%D0%B2%D0%B5%D1%81%D1%8C+%D0%BA%D0%BB%D0%B0%D1%81%D1%81+%D1%80%D0%B5%D0%BA%D1%83%D1%80%D1%81%D0%B8%D0%B2%D0%BD%D0%BE%D0%B3%D0%BE+%D0%BF%D0%BE%D0%B8%D1%81%D0%BA%D0%B0+%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2+%D1%86%D0%B5%D0%BB%D0%B8%D0%BA%D0%BE%D0%BC%22'%5D'a%5CV%5C%3D12'f%5C%5DV%5Cta%5C%3D10'%3D0'%3D500'%3D297'dim'%5C%3D10'%3D10'%3D500'%3D297'vdim'%5Cbox1'b%5Cva%5CF6F6F6'fC%5CC8C8C8'eC%5C'a%5C%5Do%5CLauto'f%5C&amp;sig=4VW0qcNbUeQAyH_rW45J7OOmxq4" data-type="text" data-props="align:left;text:<div xmlns=&quot;http#58//www.w3.org/1999/xhtml&quot; dir=&quot;ltr&quot;>
+<div><b><font color=&quot;#350000ff&quot;>using </font></b>System#59</div>
+<div><font color=&quot;#350000ff&quot;><b>using </b></font>System.Collections.Generic#59</div>
+<div><b><font color=&quot;#350000ff&quot;>using </font></b>System.Text#59</div>
+<div><br />
+</div>
+<div><font color=&quot;#350000ff&quot;><b>namespace </b></font>FileFinder</div>
+<div>{</div>
+<div>&nbsp; &nbsp; <b><font color=&quot;#350000ff&quot;>class </font></b><font color=&quot;#353d85c6&quot;><b>DirectoryAndFileFind</b></font></div>
+<div>&nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//структура описания входных параметров</b></font></div>
+<div>&nbsp; &nbsp; &nbsp;&nbsp;<b style=&quot;font-size#5813.3333330154419px&quot;><font color=&quot;#350000ff&quot;>public&nbsp;</font></b><font color=&quot;#350000ff&quot; style=&quot;font-size#5813.3333330154419px&quot;><b>struct </b></font><span style=&quot;font-size#5813.3333330154419px&quot;>inputinfo</span></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//от куда начинать поиск</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public string </b></font>StartPatchFilder#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //если ищем директорию то передаем ее название</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public string</b></font> SearchFolder#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//если ищем файл то передаем его название</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public string</b></font> SearchFile#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//структура для хранения результатов поиска&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; <b><font color=&quot;#350000ff&quot;>public&nbsp; &nbsp; </font></b><font color=&quot;#350000ff&quot;><b>struct </b></font><font color=&quot;#350b5394&quot;><b>OutputInfo</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//имя папки в которой найден файл</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public string</b></font> NameFolder#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//полный путь к файлу</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public string</b></font> FullPatchFilder#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//дата последнего обновления файла в папке</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public</b></font> <font color=&quot;#350b5394&quot;><b>DateTime</b></font> DateFile#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //структура &nbsp;для хранения информации о текущем поиске файла/ папки</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>struct </b></font><b><font color=&quot;#350b5394&quot;>PotokSearch&nbsp;</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//класс поиска в текущей папке</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font>Finder FindCurrentFolder#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//класс потока поиска текущей папке</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public System.Threading.</b></font><b><font color=&quot;#350000ff&quot;>Thread</font> </b>PotokSearchs#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//класс поиска файла или каталога в папке</b></font></div>
+<div>&nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public&nbsp;class </b></font>Finder&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//в класс будем передавать структуру inputinfo&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=&quot;#350000ff&quot;>public </font></b>inputinfo MyInputParam#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //И ждать от него результат в виде списка найденных значений</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public </b></font>List&amp;lt#59OutputInfo&amp;gt#59 OutputData = <font color=&quot;#350000ff&quot;><b>new </b></font>List&amp;lt#59OutputInfo&amp;gt#59()#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;>&nbsp; &nbsp; <b>//функция проверки завершения поиска в дочерних папках&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>bool </b></font>TestFinsFinish(List&amp;lt#59PotokSearch&amp;gt#59 FinderList)<font color=&quot;#3538761d&quot;><b> //принимаем на входе список потоков поиска</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //по умолчанию думаем что все работа закончена</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>bool </b></font>Result = <font color=&quot;#35cc0000&quot;><b>false</b></font>#59 &nbsp;<font color=&quot;#3538761d&quot;><b>//устанавливаем ложь</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>foreach </b></font>(PotokSearch SelectPotok <font color=&quot;#350000ff&quot;><b>in</b></font> FinderList)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//если находим хоть один запущенный поток то ждем останавливаем поиск&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>if</b></font> (SelectPotok.PotokSearchs.ThreadState == System.Threading.ThreadState.Running)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //возвращаем правду что поиск еще работает&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Result = <font color=&quot;#350000ff&quot;>true</font>#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//останавливаем цикл</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>break</b></font>#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //возвращаем результат работы функции</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>return </b></font>Result#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //сама функция поиска файлов и каталогов</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>public void </b></font>find()</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //если мы ищем файл то выполняем команду getFile</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> if</b></font> (MyInputParam.SearchFile != &quot;&quot;)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//находим все файлы с таким именем в указанной папке</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>string</b></font>[] <font color=&quot;#353d85c6&quot;><b>FindFiles </b></font>= System.IO.Directory.GetFiles(MyInputParam.StartPatchFilder ,MyInputParam.SearchFile)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //перебираем результат поиска файлов</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>foreach</b></font>(string F <font color=&quot;#350000ff&quot;><b>in</b></font> <font color=&quot;#353d85c6&quot;><b>FindFiles</b></font>)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//результат будем помещать в структуру OutputInfo</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#353d85c6&quot;><b>OutputInfo </b></font>Result#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//получаем путь к файлу</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.IO.DirectoryInfo FullPatch = System.IO.Directory.GetParent(F)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>&nbsp; //записываем путь к файлу</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Result.FullPatchFilder = FullPatch.FullName#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//получаем дату изменения файла</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Result.DateFile = System.IO.File.GetLastWriteTimeUtc(F)#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//получаем название папки где нашли файл</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Result.NameFolder = FullPatch.Name#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//добавляем результат в список&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OutputData.Add(Result)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //если мы ищем директорию (папку) то выполняем команду getDirectory</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (MyInputParam.SearchFolder!=&quot;&quot;)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //находим имена всех директорий подъодящих под наш поиск</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>string</b></font>[] FindFolder = System.IO.Directory.GetDirectories(MyInputParam.StartPatchFilder, MyInputParam.SearchFolder)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>&nbsp;//перебираем результат поиска файлов</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>foreach </b></font>(<font color=&quot;#350000ff&quot;><b>string </b></font>D <font color=&quot;#350000ff&quot;><b>in</b></font> FindFolder)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//результат будем помещать в&nbsp;структуру&nbsp;OutputInfo</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OutputInfo Result#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //получаем путь к директории</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.IO.DirectoryInfo FullPatch = System.IO.Directory.GetParent(D)#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//записываем путь к директории</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#353d85c6&quot;><b>Result</b></font>.FullPatchFilder = FullPatch.FullName#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//получаем дату изменения директории</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#353d85c6&quot;><b>Result</b></font>.DateFile = FullPatch.LastWriteTimeUtc#59</div>
+<div><br />
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//получаем название папки&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#353d85c6&quot;><b>Result</b></font>.NameFolder = FullPatch.Name#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //добавляем результат в список&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OutputData.Add(Result)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //Объявляем список структур PotokSearch для хранения в них результатов поиска&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>List</b></font>&amp;lt#59PotokSearch&amp;gt#59 FinderList = <font color=&quot;#350000ff&quot;><b>new </b></font>List&amp;lt#59PotokSearch&amp;gt#59()#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//находим все директории по указанному пути</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; string[] DirectroyList = System.IO.Directory.GetDirectories(MyInputParam.SearchFolder)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //перебираем каждую из найденных директорий в цикле</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>foreach </b></font>(string SelectDir <font color=&quot;#350000ff&quot;><b>in</b></font> DirectroyList)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PotokSearch Task#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //объявляем новый элемент класса DirectoryAndFileFind</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Task.FindCurrentFolder = new Finder()#59 <font color=&quot;#3538761d&quot;><b>//объявляем класс для поиска функции</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //переменная для задания параметров поиска заполняем ее текущими значениями</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; inputinfo InputParam = MyInputParam#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //меняем параметр выбранной директории</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; InputParam.StartPatchFilder = SelectDir#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //создаем новый поток&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Task.PotokSearchs = new System.Threading.Thread(Task.FindCurrentFolder.find)#59<b><font color=&quot;#3538761d&quot;>//передаем функция котора должна работать в потоке</font></b></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//запускаем поиск файлов</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Task.PotokSearchs.Start()#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //добавляем заполненную структуру в список&nbsp;</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FinderList.Add(Task)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //ждем завершения поиска в потоках</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; while (TestFinsFinish(FinderList)) #59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //собираем результаты поиска в единый массив</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; foreach (PotokSearch SelectPotok in FinderList)<font color=&quot;#3538761d&quot;><b>//перебираем все созданные потоки</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=&quot;#3538761d&quot;><b> //читаем список найденных результатов</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#350000ff&quot;><b>foreach </b></font>(OutputInfo R in SelectPotok.FindCurrentFolder.OutputData)&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=&quot;#3538761d&quot;><b>//записываем их в текущем классе в результат</b></font></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OutputData.Add(R)#59</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div>&nbsp; &nbsp; }</div>
+<div>}</div>
+<div><br />
+</div>
+</div>
+;title:C#35 весь класс рекурсивного поиска файлов целиком;" width="500" height="300" style="display:block;text-align:left;margin-right:auto;"></div>
+<br>
+</span></span></div>
+<div><span><span><br>
+</span></span></div>
+<div><span><span><br>
+</span></span></div>
+<div><span><span><span>&nbsp;&nbsp; &nbsp;</span>По идее он должен работать в несколько раз быстрее чем стандартный функционал от Microsoft и это мы сейчас попробуем проверить. Как можно вспомнить мы создавали проект поэтому перейдем в&nbsp;главный&nbsp;файл&nbsp;</span></span><span style="font-size:13.3333330154419px;background-color:transparent">программы</span><span style="font-size:10pt;background-color:transparent">&nbsp;</span><span style="font-size:10pt;background-color:transparent">Program.cs. Объявим созданный нами класс и попробуем поискать папку например system32 на диске C:\</span></div>
+<div><span style="background-color:transparent"><span><br>
+</span></span></div>
