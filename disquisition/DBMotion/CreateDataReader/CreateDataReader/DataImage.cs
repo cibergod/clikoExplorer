@@ -106,21 +106,18 @@ namespace CreateDataReader
            
             //получаем имя отчетности на основе пути к ней
         }
-
         //описываем поля справочника (путь к папке с конфигом)
         public  string Digestpatch
         {
             get { return patch; }
             set { patch = value; }
         }
-
         //описываем поля справочника (Дата последнего изменения справочника)
         public  DateTime DateUpdate
         {
             get { return LastUpdate; }
       
         }
-
         //описываем поля справочника (путь к справочнику)
         public static DateTime Klik_odate
         {
@@ -144,7 +141,6 @@ namespace CreateDataReader
                 File.WriteAllText(NameDigestXml, writer.ToString());
             }
         }
-
         //функция поиска максимального значения
         int SearchMaxID()
         {
@@ -160,7 +156,6 @@ namespace CreateDataReader
             //возвращаем значение на 1 больше чем нашли 
             return Max;
         }
-
         static void loadTable() 
         {
             MyDigest = new DataTable("Digest");
@@ -169,7 +164,6 @@ namespace CreateDataReader
             //загружаем их в виде таблици
             MyDigest.ReadXml(stringReader);
         }
-
         //добавление отчетности в таблицу если его там нет 
         public void ADDRowDigest()
         {
@@ -253,7 +247,6 @@ namespace CreateDataReader
             
         }
         #endregion
-        
         #region получаем ID справочника по его пути 
         public int GetID() 
         {
@@ -274,7 +267,6 @@ namespace CreateDataReader
             }
             return ID;
         }
-
         #endregion
 
     }
@@ -285,7 +277,9 @@ namespace CreateDataReader
     {
         //путь к файлу конфигурации KLIKOCFG.DB
         public string PATCH_KLIKOCFG;
-        
+        //запрос который будет получать данные о списке форм  
+                string SQL = "";
+
         //получаем ID для форм чтобы связать их с отчетностями
         int GetID (){
         Digest M = new Digest();
@@ -293,7 +287,10 @@ namespace CreateDataReader
         return M.GetID();
         }
 
-
+        public void ReadFormList()
+        { 
+        
+        }
         
         
     }

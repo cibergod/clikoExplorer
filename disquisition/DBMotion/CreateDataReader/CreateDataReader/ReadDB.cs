@@ -49,6 +49,8 @@ namespace CreateDataReader
                 try
                 {
                     OdbcDataReader reader = cmdSQL.ExecuteReader();
+                    Result = new DataTable();
+                    Result.Load(reader);
                 }
                 catch (Exception e)
                 {
