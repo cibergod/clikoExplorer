@@ -1,0 +1,4 @@
+D:\Develop\github\clikoExplorer\disquisition\DBMotion\CreateDataReader\CreateDataReader\bin\Debug\CreateDataReader.exe
+D:\Develop\github\clikoExplorer\disquisition\DBMotion\CreateDataReader\CreateDataReader\bin\Debug\CreateDataReader.pdb
+D:\Develop\github\clikoExplorer\disquisition\DBMotion\CreateDataReader\CreateDataReader\obj\x86\Debug\CreateDataReader.exe
+D:\Develop\github\clikoExplorer\disquisition\DBMotion\CreateDataReader\CreateDataReader\obj\x86\Debug\CreateDataReader.pdb
