@@ -24,15 +24,11 @@ namespace CreateDataReader
     }
 
 
-    //класс описания таблицы со списков отчетностей
+    //класс описания таблицы списков отчетностей
     class Digest
     {
-       
-        DataTable 
-                  MyDigest = new DataTable("Digest");
-
-        string NameDigestXml = "Digest.xml";
-
+        static DataTable MyDigest = new DataTable("Digest");
+        public static string NameDigestXml = "Digest.xml";
         #region описание столбцов таблици Digest
         void digestInit()
         {
@@ -67,7 +63,6 @@ namespace CreateDataReader
             MyDigest.Columns.Add(column);
         }
         #endregion
-
         #region переменные для заполнения таблицы
         //параметры для записи в таблицу
         static string Name, patch;
@@ -104,34 +99,36 @@ namespace CreateDataReader
         #endregion Function
         #region Описание полей  
          //описываем поля справочника (имя справочника) 
-        public string DigestName 
+        public  string DigestName 
         {
             //по требованию возвращаем имя отчетности
-            get { return Name; }
+            get { return Name;  }
+           
             //получаем имя отчетности на основе пути к ней
         }
 
         //описываем поля справочника (путь к папке с конфигом)
-        public string Digestpatch
+        public  string Digestpatch
         {
             get { return patch; }
             set { patch = value; }
         }
 
         //описываем поля справочника (Дата последнего изменения справочника)
-        public DateTime DateUpdate
+        public  DateTime DateUpdate
         {
             get { return LastUpdate; }
+      
         }
 
         //описываем поля справочника (путь к справочнику)
-        public DateTime Klik_odate
+        public static DateTime Klik_odate
         {
             get { return Klikodate; }
+           
         }
     #endregion
-
-
+        #region методы сохранения данных в таблицу
         //сохранение данных в таблице 
         void SaveTable() 
         {
@@ -148,96 +145,157 @@ namespace CreateDataReader
             }
         }
 
-        //добавление отчетности в таблицу если его там нет 
-        public void ADDRowDigest() 
+        //функция поиска максимального значения
+        int SearchMaxID()
         {
-           
-            
-            //заполняем данные на основе пути к файлу отчетности
-            LastUpdate = getDataUpdate(patch);
-            Klikodate = getDataKlico(patch);
-            Name = getDigestName(patch); 
-            
-             //если файл существует пробуем его загрузить в виде таблицы
-            if (File.Exists(NameDigestXml))
+            int Max = 0, SelectID;
+
+            foreach (DataRow Row in MyDigest.Rows) 
             {
-                //читаем данные из XML файла 
-                var stringReader = new StringReader(File.ReadAllText(NameDigestXml));
-                //загружаем их в виде таблици
-                MyDigest.ReadXml(stringReader);
-                //пробуем найти в таблице отчетность по такому же пути 
-                DataRow[] ResultSelect =  MyDigest.Select("patch = '" + patch+"'");
-                //проверяем нашли ли мы запись если нашли нужно проверить равна ли она тем параметрам которые мы задали 
-                if (ResultSelect.Length > 0)
-                {
-                    //нужно ли сохранять данные 
-                    bool TrySave = false;
-                    //хоть найденная запись и будет одна но все же 
-                    foreach (DataRow S in ResultSelect)
-                    {
-                        //есои нашли хоть одно различие в записях сохраняем данные 
+                SelectID = Convert.ToInt32(Row["ID"]);
 
-                        //если имя не совпадает обновляем его 
-                        if (S["Name"] != Name)
-                        {
-                            S["Name"] = Name;
-                            TrySave = true;
-                        }
-                        //если дата не совпадает обновляем ее
-                        if (S["LastUpdate"].ToString() != LastUpdate.ToString())
-                        {
-                            S["LastUpdate"] = LastUpdate;
-                            TrySave = true;
-                        }
-                        //если дата файла kliko не сопадает то обновляем ее 
-                        if (S["Kliko_date"].ToString() != Klik_odate.ToString())
-                        {
-                            S["Kliko_date"] = Klik_odate;
-                            TrySave = true;
-                        }
-
-
-                        if (TrySave)
-                        {
-
-                            SaveTable();
-                        }
-                    }
-                }
-                else 
-                {
-                    //добавляем данные в таблицу
-
-                }
-
+                if (Max < SelectID) Max = SelectID;
             }
-            else 
-            {
-                //создаем таблицу в памяти
-                digestInit();
-                //заполняем данными 
-                DataRow NewRow = MyDigest.NewRow();
-                //приставиваем значее будет считаться порядковым номером
-                NewRow["ID"] = 1;
-                NewRow["Name"]=Name;
-                NewRow["LastUpdate"] =LastUpdate;
-                NewRow["patch"] = patch;
-                NewRow["Kliko_date"] = Klik_odate;
-                MyDigest.Rows.Add(NewRow);
-                //сохранение данных в таблице 
-                SaveTable();
-            }
-
-         
+            Max++;
+            //возвращаем значение на 1 больше чем нашли 
+            return Max;
         }
+
+        static void loadTable() 
+        {
+            MyDigest = new DataTable("Digest");
+            //читаем данные из XML файла 
+            var stringReader = new StringReader(File.ReadAllText(NameDigestXml));
+            //загружаем их в виде таблици
+            MyDigest.ReadXml(stringReader);
+        }
+
+        //добавление отчетности в таблицу если его там нет 
+        public void ADDRowDigest()
+        {
+            if (File.Exists(patch))
+            {
+                //заполняем данные на основе пути к файлу отчетности
+                LastUpdate = getDataUpdate(patch);
+                Klikodate = getDataKlico(patch);
+                Name = getDigestName(patch);
+
+                //если файл существует пробуем его загрузить в виде таблицы
+                if (File.Exists(NameDigestXml))
+                {
+                    loadTable();
+                    //пробуем найти в таблице отчетность по такому же пути 
+                    DataRow[] ResultSelect = MyDigest.Select("patch = '" + patch + "'");
+                    //проверяем нашли ли мы запись если нашли нужно проверить равна ли она тем параметрам которые мы задали 
+                    if (ResultSelect.Length > 0)
+                    {
+                        //нужно ли сохранять данные 
+                        bool TrySave = false;
+                        string N;
+                        DateTime L, K;
+                        //хоть найденная запись и будет одна но все же 
+                        foreach (DataRow S in ResultSelect)
+                        {
+
+                            N = (string)S["Name"];
+                            L = Convert.ToDateTime(S["LastUpdate"]);
+                            K = Convert.ToDateTime(S["Kliko_date"]);
+
+                            if ((N!=Name) || (L!=LastUpdate) || (K!= Klik_odate))
+                            {
+                                //если хоть одно из полей не совпадает то обновляем запись 
+                                S["Name"] = Name;
+                                S["LastUpdate"] = LastUpdate;
+                                S["Kliko_date"] = Klik_odate;
+                                TrySave = true;
+                            }
+
+                        }
+                        //если есть отличия в данных то пересохраняем их 
+                        //сохранение данных в таблице 
+                      if(TrySave)  SaveTable();
+                    }
+                    else
+                    {
+
+                        DataRow NewRow = MyDigest.NewRow();
+                        //приставиваем значее будет считаться порядковым номером
+                        NewRow["ID"] = SearchMaxID();
+                        NewRow["Name"] = Name;
+                        NewRow["LastUpdate"] = LastUpdate;
+                        NewRow["patch"] = patch;
+                        NewRow["Kliko_date"] = Klik_odate;
+                        MyDigest.Rows.Add(NewRow);
+                        //сохранение данных в таблице 
+                        SaveTable();
+                    }
+
+                }
+                else
+                {
+                    //создаем таблицу в памяти
+                    digestInit();
+                    //заполняем данными 
+                    DataRow NewRow = MyDigest.NewRow();
+                    //приставиваем значее будет считаться порядковым номером
+                    NewRow["ID"] = SearchMaxID();
+                    NewRow["Name"] = Name;
+                    NewRow["LastUpdate"] = LastUpdate;
+                    NewRow["patch"] = patch;
+                    NewRow["Kliko_date"] = Klik_odate;
+                    MyDigest.Rows.Add(NewRow);
+                    //сохранение данных в таблице 
+                    SaveTable();
+                }
+
+
+            }
+            
+        }
+        #endregion
+        
+        #region получаем ID справочника по его пути 
+        public int GetID() 
+        {
+            //если ничего не нашли то вернем отрицательное число 
+            int ID = -1;
+            loadTable();
+            //пробуем найти в таблице отчетность по такому же пути 
+            DataRow[] ResultSelect = MyDigest.Select("patch = '" + patch + "'");
+            if (ResultSelect.Length > 0)
+            {
+                //хоть найденная запись и будет одна но все же 
+                foreach (DataRow S in ResultSelect)
+                {
+                    //находим первый попавшийся ID для данного справочника
+                    ID = Convert.ToInt32(S["ID"]);
+                    break;
+                }
+            }
+            return ID;
+        }
+
+        #endregion
 
     }
 
 
-    //главный файл конфигурации KLIKO
-    class KLIKOCFG
-    { 
-    
+    //список форм
+    class FORMSKLIKO
+    {
+        //путь к файлу конфигурации KLIKOCFG.DB
+        public string PATCH_KLIKOCFG;
+        
+        //получаем ID для форм чтобы связать их с отчетностями
+        int GetID (){
+        Digest M = new Digest();
+        M.Digestpatch = PATCH_KLIKOCFG;
+        return M.GetID();
+        }
+
+
+        
+        
     }
 
 }

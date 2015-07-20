@@ -20,6 +20,13 @@
   </xs:schema>
   <Digest>
     <ID>1</ID>
+    <Name>Cliko2</Name>
+    <LastUpdate>2015-07-14T10:35:33.9362458+03:00</LastUpdate>
+    <patch>d:\Cliko2\DATA\CFG\KLIKOCFG.DB</patch>
+    <Kliko_date>30.06.2015 9:46:40</Kliko_date>
+  </Digest>
+  <Digest>
+    <ID>2</ID>
     <Name>Cliko</Name>
     <LastUpdate>2015-07-14T10:35:33.9362458+03:00</LastUpdate>
     <patch>d:\Cliko\DATA\CFG\KLIKOCFG.DB</patch>
