@@ -292,13 +292,19 @@ namespace CreateDataReader
     //список форм из Kliko файла настроек
     class FORMSKLIKO
     {
+        //преобразование неверной кодировки в нормальные символы пока в 2 местах 
+        static string ConvertToUtf(string source)
+        {
+            Encoding srcEncodingFormat = Encoding.GetEncoding("windows-1252");
+            byte[] originalByteString = srcEncodingFormat.GetBytes(source);
+            return Encoding.Default.GetString(originalByteString);
+        }
         //имя таблицы с формами
         string NameFormTable = "forms";
         //имя таблицы с отчетностями 
         string NameDigestTable = "Digest";
         //читаем список отчетностей
         XMLEngine ReaderXML = new XMLEngine();
-        
         //получим чистый адресс без имени файла
         string GetPatchDir(string P)
         {
@@ -309,7 +315,6 @@ namespace CreateDataReader
             }
             else return null;
         }
-
         DataTable GetFormSList(string ID, string Patch) 
         {
             /*собираем запрос для получения списка форм
@@ -333,7 +338,6 @@ namespace CreateDataReader
 
             return R;
         }
-
         //функция создания новой таблицы
         DataTable InitFormTable() 
         {
@@ -343,6 +347,17 @@ namespace CreateDataReader
             //создаем перечень столбцов таблицы содержащей данные о форме 
             List<DataColumn> ListColums = new List<DataColumn>();
             //приводим таблицу к нужному формату
+            //уникальный номер записи ключик 
+
+            //IDKLIKOFRORM Уникальный номер отчетности
+            Column = new DataColumn()
+            {
+                ColumnName = "IDKLIKOFRORM",
+                DataType = System.Type.GetType("System.Int32")
+            };
+            //добавляем его в список 
+            ListColums.Add(Column);
+
 
             //KLIKOID Уникальный номер отчетности
                 Column = new DataColumn()
@@ -401,18 +416,40 @@ namespace CreateDataReader
                 return ReaderXML.CreateTable(NameFormTable, ListColums);
             //
         }
+        
+        //вобщем есть траблы у некоторых форм с кодировкой поэтому добавим их в список исключений
+        //потом вынесем в конфиг 
+        int[] DecodeList = { 7, 17 };
+
+        string GetCurrentName(string name, int ID)
+        { 
+            //ищем в списке форм с плохой кодировкой 
+            foreach (int I in DecodeList) 
+            {
+                //если нашли возвращаем перобразованное имя 
+                if (ID == I) 
+                {
+                    return ConvertToUtf(name);
+                }
+            }
+            //если не нашли то возвращаем простое имя 
+            return name;
+        }
 
         //функция создания 1 записи для добавления ее в таблицу
         DataRow AddRow(DataTable D, DataRow Rows) 
         {
+            int ID = Convert.ToInt32(Rows["KLIKOID"]);
             //загрузим в нее данные из столбцов
             DataRow FormRows = D.NewRow();
+            //IDKLIKOFRORM Уникальный номер отчетности
+            FormRows["IDKLIKOFRORM"] = ReaderXML.MaxID(NameFormTable, "IDKLIKOFRORM"); 
             // KLIKOID    Уникальный номер отчетности
-            FormRows["KLIKOID"] = Convert.ToInt32(    Rows["KLIKOID"]);
+            FormRows["KLIKOID"] = ID;
             //IDR        Идентификатор справочника
             FormRows["IDR"]     = Convert.ToInt32(    Rows["IDR"]);
             //NAME       Полное название формы 
-            FormRows["NAME"]    = Convert.ToString(   Rows["NAME"]);
+            FormRows["NAME"] = GetCurrentName(Rows["NAME"].ToString(), ID);
             //SNAME      Имя папки где он лежит
             FormRows["SNAME"]   = Convert.ToString(   Rows["SNAME"]);
             //RCLASS     Возможно название отчетности
@@ -422,10 +459,7 @@ namespace CreateDataReader
             //возвращаем данные в нужном формате для записи их а таблицу
             return FormRows;
         }
-
-
-
-
+        //добавление неповторяющихся записей в таблицу
         void AddroowinTable(DataRow Rows) 
         {
             //если не существует то будем создадим таблицу
@@ -461,8 +495,6 @@ namespace CreateDataReader
             }
 
         }
-
-
         public void GetFormList()
         {
            
@@ -487,11 +519,11 @@ namespace CreateDataReader
                     //если данные найдены нужно проверит есть ли они у нас или нет в базе
                     if (FormListThisKliko != null) 
                     {
-                        Console.WriteLine("найдена отчетность");
-                        Console.WriteLine(R["Name"].ToString());
+                      //  Console.WriteLine("найдена отчетность");
+                      //  Console.WriteLine(R["Name"].ToString());
                         foreach (DataRow S in FormListThisKliko.Rows) 
                         {
-                            Console.WriteLine("формы " + S["NAME"].ToString());
+                            //Console.WriteLine("формы " + S["NAME"].ToString());
 
                             AddroowinTable(S);
                         }
@@ -509,16 +541,3 @@ namespace CreateDataReader
  
 
 
-/*
- //запрос получения списка форм с привязкой их к отчетности
-            SQL = "SELECT " + GetID().ToString() + " AS ID_Digest, IDR, NAME, SNAME, PERIOD, PERIODT, RORDER, FLBANKS, RCLASS, ARCNAME, DBPATH, BEGDATE, VER_DATE, GRIF FROM KLIKOCFG";
-            //пробуем выполнить запрос
-            ReadDB DB = new ReadDB();
-            DB.patch= Directory.GetParent(PATCH_KLIKOCFG).FullName;
-            DB.SQL = SQL;
-
-            DB.getSQL();
-            //получаем результат в виде таблицы данных 
-            DataTable R = DB.Result;
- 
- */

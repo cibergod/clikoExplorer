@@ -18,13 +18,19 @@ namespace CreateDataReader
         public DataTable Result;
         OdbcConnection MyConn = new OdbcConnection();
         OdbcConnection connector = new OdbcConnection();
+       //соеденение с базой данных 
         bool OpenConnect()
         {
            //флаг соеденения если оно произошло то все хорошо            
            bool connect = false;
+
+            string ConnectionString = @"Dsn=Paradox;dbq=" + patch + ";defaultdir=" + patch + "driverid=538;fil=Paradox 5.X;maxbuffersize=2048;pagetimeout=5";
+            //Driver={Microsoft Paradox Driver (*.db )};DriverID=538;Fil=Paradox 7.X;DefaultDir=D:\Orion\DEMO74\;Dbq=D:\Orion\DEMO74\;CollatingSequence=ANSI;"
             //строчка создания соеденения с базой
-           string ConnectionString = @"Dsn=Paradox;dbq=" + patch + ";defaultdir=" + patch + "driverid=538;fil=Paradox 5.X;maxbuffersize=2048;pagetimeout=5";
-            //задаем строку подключения 
+           //string ConnectionString = @"Dsn=Paradox;dbq=" + patch + ";defaultdir=" + patch + "driverid=538;fil=Paradox 5.X;maxbuffersize=2048;pagetimeout=5";
+
+           
+            //задаем строку по  лючения 
             connector.ConnectionString = ConnectionString;
             try
             {
@@ -37,6 +43,7 @@ namespace CreateDataReader
             }
             return connect;
         }
+        //получаем данные из таблицы по запросу 
         public void getSQL() 
         {
                //открыли соеденение значит можно что то делать
@@ -49,6 +56,8 @@ namespace CreateDataReader
                     OdbcDataReader reader = cmdSQL.ExecuteReader();
                     Result = new DataTable();
                     Result.Load(reader);
+                    
+
                 }
                 catch (Exception e)
                 {

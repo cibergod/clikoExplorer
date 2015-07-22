@@ -8,6 +8,26 @@ namespace CreateDataReader
 {
     class XMLEngine
     {
+        //функция поиска максимального значения
+        public int MaxID(string TableName, string NameIDcolumn)
+        {
+            int Max = 1, SelectID;
+            if (File.Exists(TableName + ".xml"))
+            {
+                //загружаем данные из файла
+                DataTable tmpLoad = LoadDataTablefromXML(TableName);
+                foreach (DataRow Row in tmpLoad.Rows)
+                {
+                    SelectID = Convert.ToInt32(Row[NameIDcolumn]);
+
+                    if (Max < SelectID) Max = SelectID;
+                }
+                Max++;
+                //возвращаем значение на 1 больше чем нашли 
+            }
+            return Max;
+        }
+
         //функция выполнения запросов к указанной базе данных 
         public DataRow[] SelectData(string expresion, string TableName)
         {

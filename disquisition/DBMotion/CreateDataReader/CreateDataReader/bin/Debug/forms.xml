@@ -6,6 +6,7 @@
           <xs:element name="forms">
             <xs:complexType>
               <xs:sequence>
+                <xs:element name="IDKLIKOFRORM" type="xs:int" minOccurs="0" />
                 <xs:element name="KLIKOID" type="xs:int" minOccurs="0" />
                 <xs:element name="IDR" type="xs:int" minOccurs="0" />
                 <xs:element name="NAME" type="xs:string" minOccurs="0" />
@@ -20,6 +21,7 @@
     </xs:element>
   </xs:schema>
   <forms>
+    <IDKLIKOFRORM>1</IDKLIKOFRORM>
     <KLIKOID>1</KLIKOID>
     <IDR>3865346</IDR>
     <NAME>Информация об использовании альтернативных/резервных каналов межбанковского взаимодействия при совершении трансграничных операций</NAME>
@@ -28,6 +30,7 @@
     <BEGDATE>2014-09-12T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>2</IDKLIKOFRORM>
     <KLIKOID>2</KLIKOID>
     <IDR>3867770</IDR>
     <NAME>Информация о готовности к переходу на альтернативные/резервные каналы межбанковского взаимодействия и взаимодействия с клиентами</NAME>
@@ -36,6 +39,7 @@
     <BEGDATE>2014-09-22T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>3</IDKLIKOFRORM>
     <KLIKOID>3</KLIKOID>
     <IDR>3868276</IDR>
     <NAME>Информация о существующих каналах связи с международными платежными системами</NAME>
@@ -44,6 +48,7 @@
     <BEGDATE>2014-10-10T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>4</IDKLIKOFRORM>
     <KLIKOID>4</KLIKOID>
     <IDR>3856505</IDR>
     <NAME>63-Т Сведения об использовании КО каналов межбанковского взаимодействия</NAME>
@@ -52,6 +57,7 @@
     <BEGDATE>2014-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>5</IDKLIKOFRORM>
     <KLIKOID>4</KLIKOID>
     <IDR>3856506</IDR>
     <NAME>63-Т Сведения о мероприятиях КО по созданию каналов межбанковского взаимодействия</NAME>
@@ -60,6 +66,7 @@
     <BEGDATE>2014-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>6</IDKLIKOFRORM>
     <KLIKOID>4</KLIKOID>
     <IDR>3853707</IDR>
     <NAME>Сведения о работе в рамках письма Банка России № 193-Т</NAME>
@@ -68,6 +75,7 @@
     <BEGDATE>2014-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>7</IDKLIKOFRORM>
     <KLIKOID>5</KLIKOID>
     <IDR>452685</IDR>
     <NAME>Ежедневная балансовая отчетность (в тыс.руб.)</NAME>
@@ -76,6 +84,7 @@
     <BEGDATE>2008-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>8</IDKLIKOFRORM>
     <KLIKOID>5</KLIKOID>
     <IDR>492636</IDR>
     <NAME>Ежедневный отчет по ф.134</NAME>
@@ -84,6 +93,7 @@
     <BEGDATE>2008-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>9</IDKLIKOFRORM>
     <KLIKOID>5</KLIKOID>
     <IDR>484448</IDR>
     <NAME>Ежедневная информация по ф.135</NAME>
@@ -92,6 +102,7 @@
     <BEGDATE>2008-06-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>10</IDKLIKOFRORM>
     <KLIKOID>5</KLIKOID>
     <IDR>3846567</IDR>
     <NAME>Отчет по ф.0409123 на внутримесячные даты</NAME>
@@ -100,6 +111,7 @@
     <BEGDATE>2014-01-02T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>11</IDKLIKOFRORM>
     <KLIKOID>5</KLIKOID>
     <IDR>466766</IDR>
     <NAME>Балансовая отчетность (форма 134)</NAME>
@@ -108,6 +120,7 @@
     <BEGDATE>2014-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>12</IDKLIKOFRORM>
     <KLIKOID>6</KLIKOID>
     <IDR>3856505</IDR>
     <NAME>Сведения об использовании КО каналов межбанковского взаимодействия</NAME>
@@ -116,46 +129,52 @@
     <BEGDATE>2014-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>13</IDKLIKOFRORM>
     <KLIKOID>7</KLIKOID>
     <IDR>30449</IDR>
-    <NAME>ô.110 Ðàñøèôðîâêè îòäåëüíûõ áàëàíñîâûõ ñ÷åòîâ è ñèìâîëîâ îò÷åòà î ïðèáûëÿõ è óáûòêàõ</NAME>
+    <NAME>ф.110 Расшифровки отдельных балансовых счетов и символов отчета о прибылях и убытках</NAME>
     <SNAME>K7</SNAME>
     <RCLASS>FINOT</RCLASS>
     <BEGDATE>2006-10-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>14</IDKLIKOFRORM>
     <KLIKOID>7</KLIKOID>
     <IDR>466471</IDR>
-    <NAME>Áàëàíñîâàÿ îò÷åòíîñòü (ôîðìà 101)</NAME>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
     <SNAME>K3</SNAME>
     <RCLASS>NEWBAL</RCLASS>
     <BEGDATE>2007-08-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>15</IDKLIKOFRORM>
     <KLIKOID>7</KLIKOID>
     <IDR>467803</IDR>
-    <NAME>Áàëàíñîâàÿ îò÷åòíîñòü (ôîðìà 102)</NAME>
+    <NAME>Балансовая отчетность (форма 102)</NAME>
     <SNAME>KGE</SNAME>
     <RCLASS>NEWBAL</RCLASS>
     <BEGDATE>2007-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>16</IDKLIKOFRORM>
     <KLIKOID>7</KLIKOID>
     <IDR>452685</IDR>
-    <NAME>Åæåäíåâíàÿ áàëàíñîâàÿ îò÷åòíîñòü (â òûñ.ðóá.)</NAME>
+    <NAME>Ежедневная балансовая отчетность (в тыс.руб.)</NAME>
     <SNAME>KJD</SNAME>
     <RCLASS>NEWBALDAY</RCLASS>
     <BEGDATE>2013-01-02T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>17</IDKLIKOFRORM>
     <KLIKOID>7</KLIKOID>
     <IDR>3843443</IDR>
-    <NAME>Êîððåêòèðîâî÷íûé îò÷åò ô.110 Ðàçäåë 4 Ðàñøèôðîâêè, èñïîëüçóåìûå ïðè ðàñ÷åòå äåíåæíî-êðåäèòíûõ ïîêàçàòåëåé</NAME>
+    <NAME>Корректировочный отчет ф.110 Раздел 4 Расшифровки, используемые при расчете денежно-кредитных показателей</NAME>
     <SNAME>KDO</SNAME>
     <RCLASS>FINOT</RCLASS>
     <BEGDATE>2011-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>18</IDKLIKOFRORM>
     <KLIKOID>8</KLIKOID>
     <IDR>463249</IDR>
     <NAME>ф.115 Информация о качестве ссуд,ссудной и приравненной к ней задолженности</NAME>
@@ -164,6 +183,7 @@
     <BEGDATE>2004-06-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>19</IDKLIKOFRORM>
     <KLIKOID>8</KLIKOID>
     <IDR>466766</IDR>
     <NAME>Балансовая отчетность (форма 134)</NAME>
@@ -172,6 +192,7 @@
     <BEGDATE>1998-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>20</IDKLIKOFRORM>
     <KLIKOID>8</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -180,6 +201,7 @@
     <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>21</IDKLIKOFRORM>
     <KLIKOID>8</KLIKOID>
     <IDR>3639827</IDR>
     <NAME>ф.117 Данные о крупных ссудах</NAME>
@@ -188,6 +210,7 @@
     <BEGDATE>2011-07-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>22</IDKLIKOFRORM>
     <KLIKOID>9</KLIKOID>
     <IDR>3637013</IDR>
     <NAME>Сведения о ценных бумагах, приобретенных кредитной организацией</NAME>
@@ -196,6 +219,7 @@
     <BEGDATE>2009-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>23</IDKLIKOFRORM>
     <KLIKOID>10</KLIKOID>
     <IDR>466110</IDR>
     <NAME>ф.118 Данные о крупных кредитах</NAME>
@@ -204,6 +228,7 @@
     <BEGDATE>2004-10-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>24</IDKLIKOFRORM>
     <KLIKOID>10</KLIKOID>
     <IDR>466766</IDR>
     <NAME>Балансовая отчетность (форма 134)</NAME>
@@ -212,6 +237,7 @@
     <BEGDATE>1998-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>25</IDKLIKOFRORM>
     <KLIKOID>10</KLIKOID>
     <IDR>466610</IDR>
     <NAME>Балансовая отчетность (форма 135)</NAME>
@@ -220,6 +246,7 @@
     <BEGDATE>1998-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>26</IDKLIKOFRORM>
     <KLIKOID>10</KLIKOID>
     <IDR>463249</IDR>
     <NAME>ф.115 Информация о качестве ссуд,ссудной и приравненной к ней задолженности</NAME>
@@ -228,6 +255,7 @@
     <BEGDATE>2007-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>27</IDKLIKOFRORM>
     <KLIKOID>10</KLIKOID>
     <IDR>3835735</IDR>
     <NAME>Форма 0409123. Расчет собственных средств (капитала) (Базель III)</NAME>
@@ -236,6 +264,7 @@
     <BEGDATE>2014-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>28</IDKLIKOFRORM>
     <KLIKOID>11</KLIKOID>
     <IDR>3861526</IDR>
     <NAME>Форма 0409122. Расчет показателя краткосрочной ликвидности (Базель III)</NAME>
@@ -244,6 +273,7 @@
     <BEGDATE>2014-08-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>29</IDKLIKOFRORM>
     <KLIKOID>12</KLIKOID>
     <IDR>465849</IDR>
     <NAME>ф.125 Сведения об активах и пассивах по срокам востребования и погашения</NAME>
@@ -252,6 +282,7 @@
     <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>30</IDKLIKOFRORM>
     <KLIKOID>13</KLIKOID>
     <IDR>3866574</IDR>
     <NAME>Ф126 Данные о средневзвешенных значениях полной стоимости потребительских кредитов (займов)</NAME>
@@ -260,6 +291,7 @@
     <BEGDATE>2014-10-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>31</IDKLIKOFRORM>
     <KLIKOID>14</KLIKOID>
     <IDR>3866321</IDR>
     <NAME>Ф127 Сведения о риске процентной ставки</NAME>
@@ -268,6 +300,7 @@
     <BEGDATE>2014-10-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>32</IDKLIKOFRORM>
     <KLIKOID>15</KLIKOID>
     <IDR>463322</IDR>
     <NAME>ф.128 Данные о средневзвешенных процентных ставках по кредитам, предоставленным кредит. организацией</NAME>
@@ -276,6 +309,7 @@
     <BEGDATE>2004-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>33</IDKLIKOFRORM>
     <KLIKOID>15</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -284,6 +318,7 @@
     <BEGDATE>2007-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>34</IDKLIKOFRORM>
     <KLIKOID>16</KLIKOID>
     <IDR>463431</IDR>
     <NAME>ф.129 Данные о средневзвешенных процентных ставках по привлеченным кредитной организацией депозитам </NAME>
@@ -292,6 +327,7 @@
     <BEGDATE>2004-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>35</IDKLIKOFRORM>
     <KLIKOID>16</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -300,22 +336,25 @@
     <BEGDATE>2007-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>36</IDKLIKOFRORM>
     <KLIKOID>17</KLIKOID>
     <IDR>466471</IDR>
-    <NAME>Áàëàíñîâàÿ îò÷åòíîñòü (ôîðìà 101)</NAME>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
     <SNAME>K3</SNAME>
     <RCLASS>NEWBAL</RCLASS>
     <BEGDATE>2007-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>37</IDKLIKOFRORM>
     <KLIKOID>17</KLIKOID>
     <IDR>463431</IDR>
-    <NAME>ô.129 Äàííûå î ñðåäíåâçâåø. ïðîöåíò.ñòàâêàõ ïî ïðèâëå÷åííûì êðåäèò.îðãàíèçàöèåé äåïîçèòàì,  âêëàäàì è êðåäèòàì</NAME>
+    <NAME>ф.129 Данные о средневзвеш. процент.ставках по привлеченным кредит.организацией депозитам,  вкладам и кредитам</NAME>
     <SNAME>KXD</SNAME>
     <RCLASS>FINOT</RCLASS>
     <BEGDATE>2007-03-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>38</IDKLIKOFRORM>
     <KLIKOID>18</KLIKOID>
     <IDR>469837</IDR>
     <NAME>Сведения о резервах на возможные потери (Форма 0409155)</NAME>
@@ -324,6 +363,7 @@
     <BEGDATE>2004-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>39</IDKLIKOFRORM>
     <KLIKOID>18</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -332,6 +372,7 @@
     <BEGDATE>2005-06-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>40</IDKLIKOFRORM>
     <KLIKOID>18</KLIKOID>
     <IDR>466610</IDR>
     <NAME>Балансовая отчетность (форма 135)</NAME>
@@ -340,6 +381,7 @@
     <BEGDATE>2014-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>41</IDKLIKOFRORM>
     <KLIKOID>19</KLIKOID>
     <IDR>475242</IDR>
     <NAME>Сведения о крупных кредиторах (вкладчиках) кредитной организации (форма 0409157)</NAME>
@@ -348,6 +390,7 @@
     <BEGDATE>2004-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>42</IDKLIKOFRORM>
     <KLIKOID>19</KLIKOID>
     <IDR>466766</IDR>
     <NAME>Балансовая отчетность (форма 134)</NAME>
@@ -356,6 +399,7 @@
     <BEGDATE>1998-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>43</IDKLIKOFRORM>
     <KLIKOID>19</KLIKOID>
     <IDR>3835735</IDR>
     <NAME>Форма 0409123. Расчет собственных средств (капитала) (Базель III)</NAME>
@@ -364,6 +408,7 @@
     <BEGDATE>2014-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>44</IDKLIKOFRORM>
     <KLIKOID>20</KLIKOID>
     <IDR>81906</IDR>
     <NAME>Отчет о кассовых оборотах (форма 0409202)</NAME>
@@ -372,6 +417,7 @@
     <BEGDATE>2004-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>45</IDKLIKOFRORM>
     <KLIKOID>20</KLIKOID>
     <IDR>1178375</IDR>
     <NAME>Отчет о наличном денежном обороте (форма 0409202)</NAME>
@@ -380,6 +426,7 @@
     <BEGDATE>2008-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>46</IDKLIKOFRORM>
     <KLIKOID>20</KLIKOID>
     <IDR>1178376</IDR>
     <NAME>Корректировочный отчет о наличном денежном обороте (форма 0409202)</NAME>
@@ -388,6 +435,7 @@
     <BEGDATE>2008-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>47</IDKLIKOFRORM>
     <KLIKOID>21</KLIKOID>
     <IDR>3807368</IDR>
     <NAME>Ф0403203. Сведения об инцидентах нарушений защиты информации при переводах денежных средств</NAME>
@@ -396,6 +444,7 @@
     <BEGDATE>2012-08-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>48</IDKLIKOFRORM>
     <KLIKOID>22</KLIKOID>
     <IDR>485228</IDR>
     <NAME>Сведения о деятельности КО (их филиалов) в части расчетов с использованием платежных карт</NAME>
@@ -404,6 +453,7 @@
     <BEGDATE>2005-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>49</IDKLIKOFRORM>
     <KLIKOID>22</KLIKOID>
     <IDR>3581521</IDR>
     <NAME>Сведения об операциях с использованием платежных карт</NAME>
@@ -412,6 +462,7 @@
     <BEGDATE>2008-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>50</IDKLIKOFRORM>
     <KLIKOID>23</KLIKOID>
     <IDR>82304</IDR>
     <NAME>Отчетность по форме 0409251</NAME>
@@ -420,6 +471,7 @@
     <BEGDATE>2006-10-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>51</IDKLIKOFRORM>
     <KLIKOID>24</KLIKOID>
     <IDR>3816782</IDR>
     <NAME>Ф257 Сведения о клиентах кредитной организации и переводах денежных средств</NAME>
@@ -428,6 +480,7 @@
     <BEGDATE>2012-08-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>52</IDKLIKOFRORM>
     <KLIKOID>25</KLIKOID>
     <IDR>3834929</IDR>
     <NAME>Ф258 Сведения о несанкционированных операциях, совершенных с использованием платежных карт</NAME>
@@ -436,6 +489,7 @@
     <BEGDATE>2013-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>53</IDKLIKOFRORM>
     <KLIKOID>26</KLIKOID>
     <IDR>3834999</IDR>
     <NAME>Ф259 Сведения о деятельности КО, связанной с переводом электронных денежных средств</NAME>
@@ -444,6 +498,7 @@
     <BEGDATE>2013-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>54</IDKLIKOFRORM>
     <KLIKOID>27</KLIKOID>
     <IDR>3835520</IDR>
     <NAME>Ф260 Инф. о банкоматах и платежных терминалах КО, предназначенных для оказания платежных услуг</NAME>
@@ -452,6 +507,7 @@
     <BEGDATE>2013-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>55</IDKLIKOFRORM>
     <KLIKOID>28</KLIKOID>
     <IDR>3643890</IDR>
     <NAME>Отчет по форме 0409316</NAME>
@@ -460,6 +516,7 @@
     <BEGDATE>2009-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>56</IDKLIKOFRORM>
     <KLIKOID>28</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -468,6 +525,7 @@
     <BEGDATE>2008-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>57</IDKLIKOFRORM>
     <KLIKOID>28</KLIKOID>
     <IDR>33088</IDR>
     <NAME>Отчет по форме 0409302</NAME>
@@ -476,6 +534,7 @@
     <BEGDATE>2009-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>58</IDKLIKOFRORM>
     <KLIKOID>28</KLIKOID>
     <IDR>466610</IDR>
     <NAME>Балансовая отчетность (форма 135)</NAME>
@@ -484,6 +543,7 @@
     <BEGDATE>2012-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>59</IDKLIKOFRORM>
     <KLIKOID>28</KLIKOID>
     <IDR>3844929</IDR>
     <NAME>Отчет по форме 0409316. Разделы 2, 3</NAME>
@@ -492,6 +552,7 @@
     <BEGDATE>2014-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>60</IDKLIKOFRORM>
     <KLIKOID>28</KLIKOID>
     <IDR>463249</IDR>
     <NAME>ф.115 Информация о качестве ссуд,ссудной и приравненной к ней задолженности</NAME>
@@ -500,6 +561,7 @@
     <BEGDATE>2015-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>61</IDKLIKOFRORM>
     <KLIKOID>29</KLIKOID>
     <IDR>3699821</IDR>
     <NAME>Статистика представления по 345-П</NAME>
@@ -508,6 +570,7 @@
     <BEGDATE>2011-08-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>62</IDKLIKOFRORM>
     <KLIKOID>30</KLIKOID>
     <IDR>58020</IDR>
     <NAME>Отчетность по форме № 350</NAME>
@@ -516,6 +579,7 @@
     <BEGDATE>1999-09-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>63</IDKLIKOFRORM>
     <KLIKOID>31</KLIKOID>
     <IDR>423131</IDR>
     <NAME>Отчет уполномоченного банка об иностранных операциях (форма 0409401)</NAME>
@@ -524,6 +588,7 @@
     <BEGDATE>2011-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>64</IDKLIKOFRORM>
     <KLIKOID>32</KLIKOID>
     <IDR>88880</IDR>
     <NAME>Сведения о расчетах между резидентами и нерезидентами.(форма 0409402)</NAME>
@@ -532,6 +597,7 @@
     <BEGDATE>2001-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>65</IDKLIKOFRORM>
     <KLIKOID>32</KLIKOID>
     <IDR>581800</IDR>
     <NAME>Аналитическая таблица - сводная информация по форме 0409402</NAME>
@@ -540,6 +606,7 @@
     <BEGDATE>2006-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>66</IDKLIKOFRORM>
     <KLIKOID>33</KLIKOID>
     <IDR>226198</IDR>
     <NAME>Сведения об инвестициях уполномоченного банка</NAME>
@@ -548,6 +615,7 @@
     <BEGDATE>2004-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>67</IDKLIKOFRORM>
     <KLIKOID>34</KLIKOID>
     <IDR>471687</IDR>
     <NAME>Сведения о расчетах по операциям с ценными бумагами, совершенных между резидентами и нерезидентами</NAME>
@@ -556,6 +624,7 @@
     <BEGDATE>2006-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>68</IDKLIKOFRORM>
     <KLIKOID>35</KLIKOID>
     <IDR>3717733</IDR>
     <NAME>Сведения о расчетах резидентов с нерезидентами по операциям с производными финансовыми инструментами и прочим срочным сделкам</NAME>
@@ -564,6 +633,7 @@
     <BEGDATE>2011-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>69</IDKLIKOFRORM>
     <KLIKOID>36</KLIKOID>
     <IDR>487354</IDR>
     <NAME>Сведения о переводах физ. лиц из РФ и переводах в РФ в пользу физ. лиц и расчетах физ.лиц-резидентов с нерез.</NAME>
@@ -572,6 +642,7 @@
     <BEGDATE>2007-07-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>70</IDKLIKOFRORM>
     <KLIKOID>37</KLIKOID>
     <IDR>3759172</IDR>
     <NAME>Сведения об активах и обязательствах уполномоченного банка по видам валют и странам (форма 0409410)</NAME>
@@ -580,6 +651,7 @@
     <BEGDATE>2012-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>71</IDKLIKOFRORM>
     <KLIKOID>37</KLIKOID>
     <IDR>423131</IDR>
     <NAME>Отчет уполномоченного банка об иностранных операциях (форма 0409401)</NAME>
@@ -588,6 +660,7 @@
     <BEGDATE>2012-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>72</IDKLIKOFRORM>
     <KLIKOID>38</KLIKOID>
     <IDR>86951</IDR>
     <NAME>Отчет об операциях с наличной иностранной валютой и чеками в иностранной валюте</NAME>
@@ -596,6 +669,7 @@
     <BEGDATE>2005-03-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>73</IDKLIKOFRORM>
     <KLIKOID>39</KLIKOID>
     <IDR>585960</IDR>
     <NAME>(Месячная) Форма 0409634. Отчет об открытых валютных позициях</NAME>
@@ -604,6 +678,7 @@
     <BEGDATE>2006-03-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>74</IDKLIKOFRORM>
     <KLIKOID>39</KLIKOID>
     <IDR>585961</IDR>
     <NAME>(Внутримесячные даты) Форма 0409634. Отчет об открытых валютных позициях</NAME>
@@ -612,6 +687,7 @@
     <BEGDATE>2006-02-21T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>75</IDKLIKOFRORM>
     <KLIKOID>39</KLIKOID>
     <IDR>466766</IDR>
     <NAME>Балансовая отчетность (форма 134)</NAME>
@@ -620,6 +696,7 @@
     <BEGDATE>1998-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>76</IDKLIKOFRORM>
     <KLIKOID>39</KLIKOID>
     <IDR>586310</IDR>
     <NAME>(Декадная) Форма 0409634. Отчет об открытых валютных позициях</NAME>
@@ -628,6 +705,7 @@
     <BEGDATE>2006-03-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>77</IDKLIKOFRORM>
     <KLIKOID>39</KLIKOID>
     <IDR>3835735</IDR>
     <NAME>Форма 0409123. Расчет собственных средств (капитала) (Базель III)</NAME>
@@ -636,6 +714,7 @@
     <BEGDATE>2014-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>78</IDKLIKOFRORM>
     <KLIKOID>40</KLIKOID>
     <IDR>499389</IDR>
     <NAME>Справка о внутреннем контроле (форма 639)</NAME>
@@ -644,6 +723,7 @@
     <BEGDATE>2005-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>79</IDKLIKOFRORM>
     <KLIKOID>41</KLIKOID>
     <IDR>414666</IDR>
     <NAME>Оперативный отчет о движении средств в иностранной валюте на транзитных валютных счетах резидентов</NAME>
@@ -652,6 +732,7 @@
     <BEGDATE>2006-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>80</IDKLIKOFRORM>
     <KLIKOID>42</KLIKOID>
     <IDR>496595</IDR>
     <NAME>Ф664 Отчет о валютных операциях, осуществляемых по счетам клиентов в уп. банках</NAME>
@@ -660,6 +741,7 @@
     <BEGDATE>2004-11-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>81</IDKLIKOFRORM>
     <KLIKOID>42</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -668,6 +750,7 @@
     <BEGDATE>2007-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>82</IDKLIKOFRORM>
     <KLIKOID>43</KLIKOID>
     <IDR>3889989</IDR>
     <NAME>Ф664 (декадная) Отчет о валютных операциях, осуществляемых по счетам клиентов в уп. банках</NAME>
@@ -676,6 +759,7 @@
     <BEGDATE>2015-07-11T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>83</IDKLIKOFRORM>
     <KLIKOID>44</KLIKOID>
     <IDR>466096</IDR>
     <NAME>Депозитарный отчет (с 01.07.2004)</NAME>
@@ -684,6 +768,7 @@
     <BEGDATE>2005-07-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>84</IDKLIKOFRORM>
     <KLIKOID>44</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -692,6 +777,7 @@
     <BEGDATE>2012-03-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>85</IDKLIKOFRORM>
     <KLIKOID>45</KLIKOID>
     <IDR>3695397</IDR>
     <NAME>Извещение КО о получении сообщений о результатах регулирования обязательных резервов</NAME>
@@ -700,6 +786,7 @@
     <BEGDATE>2010-03-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>86</IDKLIKOFRORM>
     <KLIKOID>46</KLIKOID>
     <IDR>458966</IDR>
     <NAME>Обязательные резервы (внеочередное регулирование)</NAME>
@@ -708,6 +795,7 @@
     <BEGDATE>2010-12-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>87</IDKLIKOFRORM>
     <KLIKOID>46</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -716,6 +804,7 @@
     <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>88</IDKLIKOFRORM>
     <KLIKOID>47</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (внеочередное регулирование)</NAME>
@@ -724,6 +813,7 @@
     <BEGDATE>2008-08-18T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>89</IDKLIKOFRORM>
     <KLIKOID>48</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -732,6 +822,7 @@
     <BEGDATE>2013-07-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>90</IDKLIKOFRORM>
     <KLIKOID>48</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -740,6 +831,7 @@
     <BEGDATE>2013-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>91</IDKLIKOFRORM>
     <KLIKOID>49</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -748,6 +840,7 @@
     <BEGDATE>2013-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>92</IDKLIKOFRORM>
     <KLIKOID>49</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -756,6 +849,7 @@
     <BEGDATE>2013-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>93</IDKLIKOFRORM>
     <KLIKOID>50</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -764,6 +858,7 @@
     <BEGDATE>2013-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>94</IDKLIKOFRORM>
     <KLIKOID>51</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -772,6 +867,7 @@
     <BEGDATE>2012-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>95</IDKLIKOFRORM>
     <KLIKOID>51</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -780,6 +876,7 @@
     <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>96</IDKLIKOFRORM>
     <KLIKOID>52</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -788,6 +885,7 @@
     <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>97</IDKLIKOFRORM>
     <KLIKOID>52</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -796,6 +894,7 @@
     <BEGDATE>2011-12-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>98</IDKLIKOFRORM>
     <KLIKOID>53</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -804,6 +903,7 @@
     <BEGDATE>2011-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>99</IDKLIKOFRORM>
     <KLIKOID>53</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -812,6 +912,7 @@
     <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>100</IDKLIKOFRORM>
     <KLIKOID>54</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -820,6 +921,7 @@
     <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>101</IDKLIKOFRORM>
     <KLIKOID>54</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -828,6 +930,7 @@
     <BEGDATE>2011-04-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>102</IDKLIKOFRORM>
     <KLIKOID>55</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -836,6 +939,7 @@
     <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>103</IDKLIKOFRORM>
     <KLIKOID>55</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -844,6 +948,7 @@
     <BEGDATE>2011-03-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>104</IDKLIKOFRORM>
     <KLIKOID>56</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -852,6 +957,7 @@
     <BEGDATE>2010-03-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>105</IDKLIKOFRORM>
     <KLIKOID>56</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -860,6 +966,7 @@
     <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>106</IDKLIKOFRORM>
     <KLIKOID>57</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -868,6 +975,7 @@
     <BEGDATE>2009-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>107</IDKLIKOFRORM>
     <KLIKOID>57</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -876,6 +984,7 @@
     <BEGDATE>2009-12-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>108</IDKLIKOFRORM>
     <KLIKOID>58</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -884,6 +993,7 @@
     <BEGDATE>2009-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>109</IDKLIKOFRORM>
     <KLIKOID>58</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -892,6 +1002,7 @@
     <BEGDATE>2009-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>110</IDKLIKOFRORM>
     <KLIKOID>59</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -900,6 +1011,7 @@
     <BEGDATE>2008-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>111</IDKLIKOFRORM>
     <KLIKOID>59</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -908,6 +1020,7 @@
     <BEGDATE>2008-10-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>112</IDKLIKOFRORM>
     <KLIKOID>60</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -916,6 +1029,7 @@
     <BEGDATE>2008-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>113</IDKLIKOFRORM>
     <KLIKOID>60</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -924,6 +1038,7 @@
     <BEGDATE>2008-10-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>114</IDKLIKOFRORM>
     <KLIKOID>61</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -932,6 +1047,7 @@
     <BEGDATE>2008-09-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>115</IDKLIKOFRORM>
     <KLIKOID>61</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -940,6 +1056,7 @@
     <BEGDATE>2008-05-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>116</IDKLIKOFRORM>
     <KLIKOID>62</KLIKOID>
     <IDR>104929</IDR>
     <NAME>Обязательные резервы (месячный отчет)</NAME>
@@ -948,6 +1065,7 @@
     <BEGDATE>2013-07-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>117</IDKLIKOFRORM>
     <KLIKOID>62</KLIKOID>
     <IDR>466471</IDR>
     <NAME>Балансовая отчетность (форма 101)</NAME>
@@ -956,6 +1074,7 @@
     <BEGDATE>2013-02-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>118</IDKLIKOFRORM>
     <KLIKOID>63</KLIKOID>
     <IDR>559701</IDR>
     <NAME>Извещение КО о принятии (непринятии) файлов, включенных в архивный файл</NAME>
@@ -964,6 +1083,7 @@
     <BEGDATE>2005-09-29T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>119</IDKLIKOFRORM>
     <KLIKOID>64</KLIKOID>
     <IDR>3830766</IDR>
     <NAME>ф.815 Отчёт о финансовом положении кредитной организации</NAME>
@@ -972,6 +1092,7 @@
     <BEGDATE>2013-07-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>120</IDKLIKOFRORM>
     <KLIKOID>64</KLIKOID>
     <IDR>3831467</IDR>
     <NAME>ф.816 Отчёт о совокупном доходе кредитной организации</NAME>
@@ -980,6 +1101,7 @@
     <BEGDATE>2013-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>121</IDKLIKOFRORM>
     <KLIKOID>64</KLIKOID>
     <IDR>3831468</IDR>
     <NAME>ф.817 Отчёт о движении денежных средств кредитной организации</NAME>
@@ -988,6 +1110,7 @@
     <BEGDATE>2013-01-01T00:00:00+03:00</BEGDATE>
   </forms>
   <forms>
+    <IDKLIKOFRORM>122</IDKLIKOFRORM>
     <KLIKOID>64</KLIKOID>
     <IDR>3831077</IDR>
     <NAME>ф.818 Отчёт об изменениях в капитале кредитной организации</NAME>
