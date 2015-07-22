@@ -16,7 +16,6 @@ namespace CreateDataReader
         public string SQL = "";
         //результат будем возвращать в виде таблиц
         public DataTable Result;
-        
         OdbcConnection MyConn = new OdbcConnection();
         OdbcConnection connector = new OdbcConnection();
         bool OpenConnect()
@@ -38,7 +37,6 @@ namespace CreateDataReader
             }
             return connect;
         }
-
         public void getSQL() 
         {
                //открыли соеденение значит можно что то делать
@@ -63,6 +61,5 @@ namespace CreateDataReader
             }
             connector.Close();
         }
-
     }
 }

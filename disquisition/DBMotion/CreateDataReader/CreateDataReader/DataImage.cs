@@ -7,23 +7,17 @@ using System.Data;
 
 namespace CreateDataReader
 {
-
-  
-
     //класс будет хранить структуры для описания таблиц представлений 
     //Когда сервис прочтет данные он оставит после себя несколько таблиц с описанием найденных данных
     //Данные внутри этих таблиц будет описывать данный класс
     class DataImage
     {
     }
-
     //класс описания полей справочника
     class SPR 
     {
         
     }
-
-
     //класс описания таблицы списков отчетностей
     class Digest
     {
@@ -72,29 +66,52 @@ namespace CreateDataReader
         //имя отчетности это выход из директории на 2 уровня вверх  d:\Cliko\DATA\CFG\
         static string getDigestName(string patch)
         {
-            //получаем родительскую директрию d:\Cliko\DATA\
-            DirectoryInfo name = Directory.GetParent(patch);
-            //получаем 2 родителя уже у родителя d:\Cliko\
-            name = Directory.GetParent(name.Parent.FullName);
-            //получаем имя без буквы Cliko
-            return name.Name;
+            try
+            {
+                //получаем родительскую директрию d:\Cliko\DATA\
+                DirectoryInfo name = Directory.GetParent(patch);
+                //получаем 2 родителя уже у родителя d:\Cliko\
+                name = Directory.GetParent(name.Parent.FullName);
+                //получаем имя без буквы Cliko
+                return name.Name;
+            }
+            catch 
+            {
+                return null;
+            }
         }
-
         //получаем дату последней записи файла по пути к нему 
         static DateTime getDataUpdate(string patch)
         {
+            try
+            {
             return File.GetLastWriteTimeUtc(patch);
-        }
+            }
+            catch
+            {
 
+            }
+            //обнуляем дату 
+            return new DateTime();
+        }
         //получаем дату последнего редактирования файла kliko
         static DateTime getDataKlico(string patch)
         {
-            //получаем родительскую директрию d:\Cliko\DATA\
-            DirectoryInfo name = Directory.GetParent(patch);
-            //получаем 2 родителя уже у родителя d:\Cliko\
-            name = Directory.GetParent(name.Parent.FullName);
-            //подставляем имя EXE Файла
-            return File.GetLastWriteTimeUtc(name.FullName + @"\KLIKO.EXE");
+            try
+            {
+                //получаем родительскую директрию d:\Cliko\DATA\
+                DirectoryInfo name = Directory.GetParent(patch);
+                //получаем 2 родителя уже у родителя d:\Cliko\
+                name = Directory.GetParent(name.Parent.FullName);
+                //подставляем имя EXE Файла
+                return File.GetLastWriteTimeUtc(name.FullName + @"\KLIKO.EXE");
+            }
+            catch 
+            {
+ 
+            }
+            //обнуляем дату 
+            return new DateTime();
         }
         #endregion Function
         #region Описание полей  
@@ -173,45 +190,65 @@ namespace CreateDataReader
                 LastUpdate = getDataUpdate(patch);
                 Klikodate = getDataKlico(patch);
                 Name = getDigestName(patch);
-
-                //если файл существует пробуем его загрузить в виде таблицы
-                if (File.Exists(NameDigestXml))
+                //если удалось получить имя папки значит это Kliko  а не какято шляпа на моем диске с файлом
+                if (Name != null)
                 {
-                    loadTable();
-                    //пробуем найти в таблице отчетность по такому же пути 
-                    DataRow[] ResultSelect = MyDigest.Select("patch = '" + patch + "'");
-                    //проверяем нашли ли мы запись если нашли нужно проверить равна ли она тем параметрам которые мы задали 
-                    if (ResultSelect.Length > 0)
+                    //если файл существует пробуем его загрузить в виде таблицы
+                    if (File.Exists(NameDigestXml))
                     {
-                        //нужно ли сохранять данные 
-                        bool TrySave = false;
-                        string N;
-                        DateTime L, K;
-                        //хоть найденная запись и будет одна но все же 
-                        foreach (DataRow S in ResultSelect)
+                        loadTable();
+                        //пробуем найти в таблице отчетность по такому же пути 
+                        DataRow[] ResultSelect = MyDigest.Select("patch = '" + patch + "'");
+                        //проверяем нашли ли мы запись если нашли нужно проверить равна ли она тем параметрам которые мы задали 
+                        if (ResultSelect.Length > 0)
+                        {
+                            //нужно ли сохранять данные 
+                            bool TrySave = false;
+                            string N;
+                            DateTime L, K;
+                            //хоть найденная запись и будет одна но все же 
+                            foreach (DataRow S in ResultSelect)
+                            {
+
+                                N = (string)S["Name"];
+                                L = Convert.ToDateTime(S["LastUpdate"]);
+                                K = Convert.ToDateTime(S["Kliko_date"]);
+
+                                if ((N != Name) || (L != LastUpdate) || (K != Klik_odate))
+                                {
+                                    //если хоть одно из полей не совпадает то обновляем запись 
+                                    S["Name"] = Name;
+                                    S["LastUpdate"] = LastUpdate;
+                                    S["Kliko_date"] = Klik_odate;
+                                    TrySave = true;
+                                }
+
+                            }
+                            //если есть отличия в данных то пересохраняем их 
+                            //сохранение данных в таблице 
+                            if (TrySave) SaveTable();
+                        }
+                        else
                         {
 
-                            N = (string)S["Name"];
-                            L = Convert.ToDateTime(S["LastUpdate"]);
-                            K = Convert.ToDateTime(S["Kliko_date"]);
-
-                            if ((N!=Name) || (L!=LastUpdate) || (K!= Klik_odate))
-                            {
-                                //если хоть одно из полей не совпадает то обновляем запись 
-                                S["Name"] = Name;
-                                S["LastUpdate"] = LastUpdate;
-                                S["Kliko_date"] = Klik_odate;
-                                TrySave = true;
-                            }
-
+                            DataRow NewRow = MyDigest.NewRow();
+                            //приставиваем значее будет считаться порядковым номером
+                            NewRow["ID"] = SearchMaxID();
+                            NewRow["Name"] = Name;
+                            NewRow["LastUpdate"] = LastUpdate;
+                            NewRow["patch"] = patch;
+                            NewRow["Kliko_date"] = Klik_odate;
+                            MyDigest.Rows.Add(NewRow);
+                            //сохранение данных в таблице 
+                            SaveTable();
                         }
-                        //если есть отличия в данных то пересохраняем их 
-                        //сохранение данных в таблице 
-                      if(TrySave)  SaveTable();
+
                     }
                     else
                     {
-
+                        //создаем таблицу в памяти
+                        digestInit();
+                        //заполняем данными 
                         DataRow NewRow = MyDigest.NewRow();
                         //приставиваем значее будет считаться порядковым номером
                         NewRow["ID"] = SearchMaxID();
@@ -224,25 +261,8 @@ namespace CreateDataReader
                         SaveTable();
                     }
 
-                }
-                else
-                {
-                    //создаем таблицу в памяти
-                    digestInit();
-                    //заполняем данными 
-                    DataRow NewRow = MyDigest.NewRow();
-                    //приставиваем значее будет считаться порядковым номером
-                    NewRow["ID"] = SearchMaxID();
-                    NewRow["Name"] = Name;
-                    NewRow["LastUpdate"] = LastUpdate;
-                    NewRow["patch"] = patch;
-                    NewRow["Kliko_date"] = Klik_odate;
-                    MyDigest.Rows.Add(NewRow);
-                    //сохранение данных в таблице 
-                    SaveTable();
-                }
 
-
+                }
             }
             
         }
@@ -268,31 +288,237 @@ namespace CreateDataReader
             return ID;
         }
         #endregion
-
     }
-
-
-    //список форм
+    //список форм из Kliko файла настроек
     class FORMSKLIKO
     {
-        //путь к файлу конфигурации KLIKOCFG.DB
-        public string PATCH_KLIKOCFG;
-        //запрос который будет получать данные о списке форм  
-                string SQL = "";
-
-        //получаем ID для форм чтобы связать их с отчетностями
-        int GetID (){
-        Digest M = new Digest();
-        M.Digestpatch = PATCH_KLIKOCFG;
-        return M.GetID();
+        //имя таблицы с формами
+        string NameFormTable = "forms";
+        //имя таблицы с отчетностями 
+        string NameDigestTable = "Digest";
+        //читаем список отчетностей
+        XMLEngine ReaderXML = new XMLEngine();
+        
+        //получим чистый адресс без имени файла
+        string GetPatchDir(string P)
+        {
+            if (P != "")
+            {
+                //возвращаем путь к папке а не к файлу
+                return Directory.GetParent(P).FullName;
+            }
+            else return null;
         }
 
-        public void ReadFormList()
-        { 
-        
+        DataTable GetFormSList(string ID, string Patch) 
+        {
+            /*собираем запрос для получения списка форм
+           KLIKOID    Уникальный номер отчетности
+           IDR        Идентификатор справочника
+           NAME       Полное название формы 
+           SNAME      Имя папки где он лежит
+           RCLASS     Возможно название отчетности
+           BEGDATE    Дата начала использования */
+            string QWERY = @" SELECT " +ID + @" as KLIKOID, IDR , NAME, SNAME, RCLASS, BEGDATE FROM  KLIKOCFG";
+            //потключаем класс работы с Базами данных 
+            ReadDB DB = new ReadDB();
+            //задаем путь где лежит база данных 
+            DB.patch = Patch;
+            //передаем параметры запроса 
+            DB.SQL = QWERY;
+            //запускаем запрос 
+            DB.getSQL();
+            //получаем результат в виде таблицы данных 
+            DataTable R = DB.Result;
+
+            return R;
         }
-        
-        
+
+        //функция создания новой таблицы
+        DataTable InitFormTable() 
+        {
+
+            //класс солбца который будем созадвать 
+            DataColumn Column;
+            //создаем перечень столбцов таблицы содержащей данные о форме 
+            List<DataColumn> ListColums = new List<DataColumn>();
+            //приводим таблицу к нужному формату
+
+            //KLIKOID Уникальный номер отчетности
+                Column = new DataColumn()
+                {
+                    ColumnName="KLIKOID", DataType= System.Type.GetType("System.Int32")
+                };
+            //добавляем его в список 
+                ListColums.Add(Column);
+
+            //IDR Идентификатор справочника
+                Column = new DataColumn()
+                {
+                    ColumnName = "IDR",
+                    DataType = System.Type.GetType("System.Int32")
+                };
+           //добавляем его в список 
+                ListColums.Add(Column);
+           
+            
+            //NAME Полное название формы 
+                Column = new DataColumn()
+                {
+                    ColumnName = "NAME",
+                    DataType = System.Type.GetType("System.String")
+                };
+                //добавляем его в список 
+                ListColums.Add(Column);
+            
+             //SNAME Имя папки где он лежит
+                Column = new DataColumn()
+                {
+                    ColumnName = "SNAME",
+                    DataType = System.Type.GetType("System.String")
+                };
+                //добавляем его в список 
+                ListColums.Add(Column);
+
+            //RCLASS Возможно название отчетности
+                Column = new DataColumn()
+                {
+                    ColumnName = "RCLASS",
+                    DataType = System.Type.GetType("System.String")
+                };
+                //добавляем его в список 
+                ListColums.Add(Column);
+            
+            //BEGDATE Дата начала использования 
+                Column = new DataColumn()
+                {
+                    ColumnName = "BEGDATE",
+                    DataType = System.Type.GetType("System.DateTime")
+                };
+                //добавляем его в список 
+                ListColums.Add(Column);
+                //создаем таблицу Form
+                return ReaderXML.CreateTable(NameFormTable, ListColums);
+            //
+        }
+
+        //функция создания 1 записи для добавления ее в таблицу
+        DataRow AddRow(DataTable D, DataRow Rows) 
+        {
+            //загрузим в нее данные из столбцов
+            DataRow FormRows = D.NewRow();
+            // KLIKOID    Уникальный номер отчетности
+            FormRows["KLIKOID"] = Convert.ToInt32(    Rows["KLIKOID"]);
+            //IDR        Идентификатор справочника
+            FormRows["IDR"]     = Convert.ToInt32(    Rows["IDR"]);
+            //NAME       Полное название формы 
+            FormRows["NAME"]    = Convert.ToString(   Rows["NAME"]);
+            //SNAME      Имя папки где он лежит
+            FormRows["SNAME"]   = Convert.ToString(   Rows["SNAME"]);
+            //RCLASS     Возможно название отчетности
+            FormRows["RCLASS"]  = Convert.ToString(   Rows["RCLASS"]);
+            //BEGDATE    Дата начала использования 
+            FormRows["BEGDATE"] = Convert.ToDateTime( Rows["BEGDATE"]);
+            //возвращаем данные в нужном формате для записи их а таблицу
+            return FormRows;
+        }
+
+
+
+
+        void AddroowinTable(DataRow Rows) 
+        {
+            //если не существует то будем создадим таблицу
+            DataTable D;
+            //проверяем существует ли таблица с формами 
+            if (File.Exists(NameFormTable + ".xml"))
+            {
+                //условия отбора форм для добавления
+                string expression = "KLIKOID = " + Rows["KLIKOID"].ToString() + " and " + " IDR = " + Rows["IDR"].ToString();
+                //ура таблиа существует тогда загружаем ее из файла
+                D = ReaderXML.LoadDataTablefromXML(NameFormTable);
+                //ищем совпадения данных 
+                DataRow[] Result= D.Select(expression);
+                //если не нашли запись в таблице то добавляем ее 
+                if (Result.Length == 0) 
+                {
+                    //добавляем запись в таблицу
+                    D.Rows.Add(AddRow(D, Rows));
+                    //сохраняем таблицу в файл 
+                    ReaderXML.SaveDataTableInXML(D);
+                }
+                //иначе просто будем пропускать ее мимо ушей 
+
+            }
+            else 
+            {
+                //если не существует то будем создадим таблицу
+                 D =   InitFormTable();
+                //добавляем запись в таблицу
+                D.Rows.Add(AddRow(D, Rows));
+                //сохраняем таблицу в файл 
+                ReaderXML.SaveDataTableInXML(D);
+            }
+
+        }
+
+
+        public void GetFormList()
+        {
+           
+            //пробуем загрузить данные из таблицы
+            DataTable DigestTable = ReaderXML.LoadDataTablefromXML(NameDigestTable);
+            //из таблицы нам понадабяться 2 параметра 
+            string ID_Kliko, patch_kliko;
+            
+            //если загрузка удалась пробуем прочитать данные 
+            if (DigestTable != null) 
+            {
+                //нам нужны ID отчетности и путь к файлу бызы данных 
+                foreach (DataRow R in DigestTable.Rows) 
+                {
+                    //получаем номер kliko 
+                    ID_Kliko    = R["ID"].ToString(); 
+                    // получаем путь к kliko 
+                    patch_kliko = GetPatchDir (R["patch"].ToString());
+                    //получаем результат поиска данных из Kliko 
+                    DataTable FormListThisKliko = GetFormSList(ID_Kliko, patch_kliko);
+
+                    //если данные найдены нужно проверит есть ли они у нас или нет в базе
+                    if (FormListThisKliko != null) 
+                    {
+                        Console.WriteLine("найдена отчетность");
+                        Console.WriteLine(R["Name"].ToString());
+                        foreach (DataRow S in FormListThisKliko.Rows) 
+                        {
+                            Console.WriteLine("формы " + S["NAME"].ToString());
+
+                            AddroowinTable(S);
+                        }
+                    }
+
+                }
+
+            }
+
+        }
+
     }
-
 }
+
+ 
+
+
+/*
+ //запрос получения списка форм с привязкой их к отчетности
+            SQL = "SELECT " + GetID().ToString() + " AS ID_Digest, IDR, NAME, SNAME, PERIOD, PERIODT, RORDER, FLBANKS, RCLASS, ARCNAME, DBPATH, BEGDATE, VER_DATE, GRIF FROM KLIKOCFG";
+            //пробуем выполнить запрос
+            ReadDB DB = new ReadDB();
+            DB.patch= Directory.GetParent(PATCH_KLIKOCFG).FullName;
+            DB.SQL = SQL;
+
+            DB.getSQL();
+            //получаем результат в виде таблицы данных 
+            DataTable R = DB.Result;
+ 
+ */

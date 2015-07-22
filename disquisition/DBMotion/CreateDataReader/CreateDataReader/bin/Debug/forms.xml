@@ -1,0 +1,998 @@
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="forms" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="forms">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="KLIKOID" type="xs:int" minOccurs="0" />
+                <xs:element name="IDR" type="xs:int" minOccurs="0" />
+                <xs:element name="NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="SNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="RCLASS" type="xs:string" minOccurs="0" />
+                <xs:element name="BEGDATE" type="xs:dateTime" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <forms>
+    <KLIKOID>1</KLIKOID>
+    <IDR>3865346</IDR>
+    <NAME>Информация об использовании альтернативных/резервных каналов межбанковского взаимодействия при совершении трансграничных операций</NAME>
+    <SNAME>KWN</SNAME>
+    <RCLASS>KCM</RCLASS>
+    <BEGDATE>2014-09-12T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>2</KLIKOID>
+    <IDR>3867770</IDR>
+    <NAME>Информация о готовности к переходу на альтернативные/резервные каналы межбанковского взаимодействия и взаимодействия с клиентами</NAME>
+    <SNAME>KZN</SNAME>
+    <RCLASS>KCM</RCLASS>
+    <BEGDATE>2014-09-22T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>3</KLIKOID>
+    <IDR>3868276</IDR>
+    <NAME>Информация о существующих каналах связи с международными платежными системами</NAME>
+    <SNAME>KCO</SNAME>
+    <RCLASS>KCM</RCLASS>
+    <BEGDATE>2014-10-10T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>4</KLIKOID>
+    <IDR>3856505</IDR>
+    <NAME>63-Т Сведения об использовании КО каналов межбанковского взаимодействия</NAME>
+    <SNAME>KON</SNAME>
+    <RCLASS>KCM</RCLASS>
+    <BEGDATE>2014-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>4</KLIKOID>
+    <IDR>3856506</IDR>
+    <NAME>63-Т Сведения о мероприятиях КО по созданию каналов межбанковского взаимодействия</NAME>
+    <SNAME>KPN</SNAME>
+    <RCLASS>KCM</RCLASS>
+    <BEGDATE>2014-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>4</KLIKOID>
+    <IDR>3853707</IDR>
+    <NAME>Сведения о работе в рамках письма Банка России № 193-Т</NAME>
+    <SNAME>KKP</SNAME>
+    <RCLASS>T193</RCLASS>
+    <BEGDATE>2014-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>5</KLIKOID>
+    <IDR>452685</IDR>
+    <NAME>Ежедневная балансовая отчетность (в тыс.руб.)</NAME>
+    <SNAME>KJD</SNAME>
+    <RCLASS>NEWBALDAY</RCLASS>
+    <BEGDATE>2008-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>5</KLIKOID>
+    <IDR>492636</IDR>
+    <NAME>Ежедневный отчет по ф.134</NAME>
+    <SNAME>KAF</SNAME>
+    <RCLASS>NEWBALDAY</RCLASS>
+    <BEGDATE>2008-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>5</KLIKOID>
+    <IDR>484448</IDR>
+    <NAME>Ежедневная информация по ф.135</NAME>
+    <SNAME>KVE</SNAME>
+    <RCLASS>NEWBALDAY</RCLASS>
+    <BEGDATE>2008-06-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>5</KLIKOID>
+    <IDR>3846567</IDR>
+    <NAME>Отчет по ф.0409123 на внутримесячные даты</NAME>
+    <SNAME>KLN</SNAME>
+    <RCLASS>NEWBALDAY</RCLASS>
+    <BEGDATE>2014-01-02T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>5</KLIKOID>
+    <IDR>466766</IDR>
+    <NAME>Балансовая отчетность (форма 134)</NAME>
+    <SNAME>KHE</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2014-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>6</KLIKOID>
+    <IDR>3856505</IDR>
+    <NAME>Сведения об использовании КО каналов межбанковского взаимодействия</NAME>
+    <SNAME>KON</SNAME>
+    <RCLASS>KCM</RCLASS>
+    <BEGDATE>2014-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>7</KLIKOID>
+    <IDR>30449</IDR>
+    <NAME>ô.110 Ðàñøèôðîâêè îòäåëüíûõ áàëàíñîâûõ ñ÷åòîâ è ñèìâîëîâ îò÷åòà î ïðèáûëÿõ è óáûòêàõ</NAME>
+    <SNAME>K7</SNAME>
+    <RCLASS>FINOT</RCLASS>
+    <BEGDATE>2006-10-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>7</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Áàëàíñîâàÿ îò÷åòíîñòü (ôîðìà 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2007-08-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>7</KLIKOID>
+    <IDR>467803</IDR>
+    <NAME>Áàëàíñîâàÿ îò÷åòíîñòü (ôîðìà 102)</NAME>
+    <SNAME>KGE</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2007-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>7</KLIKOID>
+    <IDR>452685</IDR>
+    <NAME>Åæåäíåâíàÿ áàëàíñîâàÿ îò÷åòíîñòü (â òûñ.ðóá.)</NAME>
+    <SNAME>KJD</SNAME>
+    <RCLASS>NEWBALDAY</RCLASS>
+    <BEGDATE>2013-01-02T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>7</KLIKOID>
+    <IDR>3843443</IDR>
+    <NAME>Êîððåêòèðîâî÷íûé îò÷åò ô.110 Ðàçäåë 4 Ðàñøèôðîâêè, èñïîëüçóåìûå ïðè ðàñ÷åòå äåíåæíî-êðåäèòíûõ ïîêàçàòåëåé</NAME>
+    <SNAME>KDO</SNAME>
+    <RCLASS>FINOT</RCLASS>
+    <BEGDATE>2011-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>8</KLIKOID>
+    <IDR>463249</IDR>
+    <NAME>ф.115 Информация о качестве ссуд,ссудной и приравненной к ней задолженности</NAME>
+    <SNAME>KTD</SNAME>
+    <RCLASS>FINOT</RCLASS>
+    <BEGDATE>2004-06-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>8</KLIKOID>
+    <IDR>466766</IDR>
+    <NAME>Балансовая отчетность (форма 134)</NAME>
+    <SNAME>KHE</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>1998-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>8</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>8</KLIKOID>
+    <IDR>3639827</IDR>
+    <NAME>ф.117 Данные о крупных ссудах</NAME>
+    <SNAME>KSI</SNAME>
+    <RCLASS>F117</RCLASS>
+    <BEGDATE>2011-07-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>9</KLIKOID>
+    <IDR>3637013</IDR>
+    <NAME>Сведения о ценных бумагах, приобретенных кредитной организацией</NAME>
+    <SNAME>KJI</SNAME>
+    <RCLASS>F116</RCLASS>
+    <BEGDATE>2009-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>10</KLIKOID>
+    <IDR>466110</IDR>
+    <NAME>ф.118 Данные о крупных кредитах</NAME>
+    <SNAME>KUD</SNAME>
+    <RCLASS>FINOT</RCLASS>
+    <BEGDATE>2004-10-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>10</KLIKOID>
+    <IDR>466766</IDR>
+    <NAME>Балансовая отчетность (форма 134)</NAME>
+    <SNAME>KHE</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>1998-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>10</KLIKOID>
+    <IDR>466610</IDR>
+    <NAME>Балансовая отчетность (форма 135)</NAME>
+    <SNAME>KFE</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>1998-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>10</KLIKOID>
+    <IDR>463249</IDR>
+    <NAME>ф.115 Информация о качестве ссуд,ссудной и приравненной к ней задолженности</NAME>
+    <SNAME>KTD</SNAME>
+    <RCLASS>FINOT</RCLASS>
+    <BEGDATE>2007-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>10</KLIKOID>
+    <IDR>3835735</IDR>
+    <NAME>Форма 0409123. Расчет собственных средств (капитала) (Базель III)</NAME>
+    <SNAME>KAN</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2014-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>11</KLIKOID>
+    <IDR>3861526</IDR>
+    <NAME>Форма 0409122. Расчет показателя краткосрочной ликвидности (Базель III)</NAME>
+    <SNAME>KUN</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2014-08-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>12</KLIKOID>
+    <IDR>465849</IDR>
+    <NAME>ф.125 Сведения об активах и пассивах по срокам востребования и погашения</NAME>
+    <SNAME>KVD</SNAME>
+    <RCLASS>FINOT</RCLASS>
+    <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>13</KLIKOID>
+    <IDR>3866574</IDR>
+    <NAME>Ф126 Данные о средневзвешенных значениях полной стоимости потребительских кредитов (займов)</NAME>
+    <SNAME>KYN</SNAME>
+    <RCLASS>F126</RCLASS>
+    <BEGDATE>2014-10-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>14</KLIKOID>
+    <IDR>3866321</IDR>
+    <NAME>Ф127 Сведения о риске процентной ставки</NAME>
+    <SNAME>KXN</SNAME>
+    <RCLASS>F127</RCLASS>
+    <BEGDATE>2014-10-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>15</KLIKOID>
+    <IDR>463322</IDR>
+    <NAME>ф.128 Данные о средневзвешенных процентных ставках по кредитам, предоставленным кредит. организацией</NAME>
+    <SNAME>KWD</SNAME>
+    <RCLASS>FINOT</RCLASS>
+    <BEGDATE>2004-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>15</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2007-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>16</KLIKOID>
+    <IDR>463431</IDR>
+    <NAME>ф.129 Данные о средневзвешенных процентных ставках по привлеченным кредитной организацией депозитам </NAME>
+    <SNAME>KXD</SNAME>
+    <RCLASS>FINOT</RCLASS>
+    <BEGDATE>2004-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>16</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2007-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>17</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Áàëàíñîâàÿ îò÷åòíîñòü (ôîðìà 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2007-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>17</KLIKOID>
+    <IDR>463431</IDR>
+    <NAME>ô.129 Äàííûå î ñðåäíåâçâåø. ïðîöåíò.ñòàâêàõ ïî ïðèâëå÷åííûì êðåäèò.îðãàíèçàöèåé äåïîçèòàì,  âêëàäàì è êðåäèòàì</NAME>
+    <SNAME>KXD</SNAME>
+    <RCLASS>FINOT</RCLASS>
+    <BEGDATE>2007-03-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>18</KLIKOID>
+    <IDR>469837</IDR>
+    <NAME>Сведения о резервах на возможные потери (Форма 0409155)</NAME>
+    <SNAME>KLE</SNAME>
+    <RCLASS>F155</RCLASS>
+    <BEGDATE>2004-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>18</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2005-06-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>18</KLIKOID>
+    <IDR>466610</IDR>
+    <NAME>Балансовая отчетность (форма 135)</NAME>
+    <SNAME>KFE</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2014-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>19</KLIKOID>
+    <IDR>475242</IDR>
+    <NAME>Сведения о крупных кредиторах (вкладчиках) кредитной организации (форма 0409157)</NAME>
+    <SNAME>KRE</SNAME>
+    <RCLASS>F157</RCLASS>
+    <BEGDATE>2004-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>19</KLIKOID>
+    <IDR>466766</IDR>
+    <NAME>Балансовая отчетность (форма 134)</NAME>
+    <SNAME>KHE</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>1998-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>19</KLIKOID>
+    <IDR>3835735</IDR>
+    <NAME>Форма 0409123. Расчет собственных средств (капитала) (Базель III)</NAME>
+    <SNAME>KAN</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2014-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>20</KLIKOID>
+    <IDR>81906</IDR>
+    <NAME>Отчет о кассовых оборотах (форма 0409202)</NAME>
+    <SNAME>KBA</SNAME>
+    <RCLASS>KL201</RCLASS>
+    <BEGDATE>2004-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>20</KLIKOID>
+    <IDR>1178375</IDR>
+    <NAME>Отчет о наличном денежном обороте (форма 0409202)</NAME>
+    <SNAME>KIH</SNAME>
+    <RCLASS>KL201</RCLASS>
+    <BEGDATE>2008-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>20</KLIKOID>
+    <IDR>1178376</IDR>
+    <NAME>Корректировочный отчет о наличном денежном обороте (форма 0409202)</NAME>
+    <SNAME>KJH</SNAME>
+    <RCLASS>KL201</RCLASS>
+    <BEGDATE>2008-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>21</KLIKOID>
+    <IDR>3807368</IDR>
+    <NAME>Ф0403203. Сведения об инцидентах нарушений защиты информации при переводах денежных средств</NAME>
+    <SNAME>KCM</SNAME>
+    <RCLASS>KCM</RCLASS>
+    <BEGDATE>2012-08-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>22</KLIKOID>
+    <IDR>485228</IDR>
+    <NAME>Сведения о деятельности КО (их филиалов) в части расчетов с использованием платежных карт</NAME>
+    <SNAME>KAZ</SNAME>
+    <RCLASS>BPK</RCLASS>
+    <BEGDATE>2005-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>22</KLIKOID>
+    <IDR>3581521</IDR>
+    <NAME>Сведения об операциях с использованием платежных карт</NAME>
+    <SNAME>KAZ</SNAME>
+    <RCLASS>BPK</RCLASS>
+    <BEGDATE>2008-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>23</KLIKOID>
+    <IDR>82304</IDR>
+    <NAME>Отчетность по форме 0409251</NAME>
+    <SNAME>KHA</SNAME>
+    <RCLASS>KAY</RCLASS>
+    <BEGDATE>2006-10-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>24</KLIKOID>
+    <IDR>3816782</IDR>
+    <NAME>Ф257 Сведения о клиентах кредитной организации и переводах денежных средств</NAME>
+    <SNAME>KHM</SNAME>
+    <RCLASS>KL257</RCLASS>
+    <BEGDATE>2012-08-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>25</KLIKOID>
+    <IDR>3834929</IDR>
+    <NAME>Ф258 Сведения о несанкционированных операциях, совершенных с использованием платежных карт</NAME>
+    <SNAME>KXM</SNAME>
+    <RCLASS>KL258</RCLASS>
+    <BEGDATE>2013-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>26</KLIKOID>
+    <IDR>3834999</IDR>
+    <NAME>Ф259 Сведения о деятельности КО, связанной с переводом электронных денежных средств</NAME>
+    <SNAME>KYM</SNAME>
+    <RCLASS>KL259</RCLASS>
+    <BEGDATE>2013-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>27</KLIKOID>
+    <IDR>3835520</IDR>
+    <NAME>Ф260 Инф. о банкоматах и платежных терминалах КО, предназначенных для оказания платежных услуг</NAME>
+    <SNAME>KZM</SNAME>
+    <RCLASS>KL260</RCLASS>
+    <BEGDATE>2013-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>28</KLIKOID>
+    <IDR>3643890</IDR>
+    <NAME>Отчет по форме 0409316</NAME>
+    <SNAME>KVI</SNAME>
+    <RCLASS>CRED_DEP</RCLASS>
+    <BEGDATE>2009-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>28</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2008-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>28</KLIKOID>
+    <IDR>33088</IDR>
+    <NAME>Отчет по форме 0409302</NAME>
+    <SNAME>KK</SNAME>
+    <RCLASS>CRED_DEP</RCLASS>
+    <BEGDATE>2009-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>28</KLIKOID>
+    <IDR>466610</IDR>
+    <NAME>Балансовая отчетность (форма 135)</NAME>
+    <SNAME>KFE</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2012-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>28</KLIKOID>
+    <IDR>3844929</IDR>
+    <NAME>Отчет по форме 0409316. Разделы 2, 3</NAME>
+    <SNAME>KKN</SNAME>
+    <RCLASS>CRED_DEP</RCLASS>
+    <BEGDATE>2014-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>28</KLIKOID>
+    <IDR>463249</IDR>
+    <NAME>ф.115 Информация о качестве ссуд,ссудной и приравненной к ней задолженности</NAME>
+    <SNAME>KTD</SNAME>
+    <RCLASS>FINOT</RCLASS>
+    <BEGDATE>2015-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>29</KLIKOID>
+    <IDR>3699821</IDR>
+    <NAME>Статистика представления по 345-П</NAME>
+    <SNAME>KCL</SNAME>
+    <RCLASS>KL345P</RCLASS>
+    <BEGDATE>2011-08-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>30</KLIKOID>
+    <IDR>58020</IDR>
+    <NAME>Отчетность по форме № 350</NAME>
+    <SNAME>KI</SNAME>
+    <RCLASS>F350</RCLASS>
+    <BEGDATE>1999-09-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>31</KLIKOID>
+    <IDR>423131</IDR>
+    <NAME>Отчет уполномоченного банка об иностранных операциях (форма 0409401)</NAME>
+    <SNAME>KDD</SNAME>
+    <RCLASS>KL401</RCLASS>
+    <BEGDATE>2011-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>32</KLIKOID>
+    <IDR>88880</IDR>
+    <NAME>Сведения о расчетах между резидентами и нерезидентами.(форма 0409402)</NAME>
+    <SNAME>KOA</SNAME>
+    <RCLASS>KL402</RCLASS>
+    <BEGDATE>2001-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>32</KLIKOID>
+    <IDR>581800</IDR>
+    <NAME>Аналитическая таблица - сводная информация по форме 0409402</NAME>
+    <SNAME>KFG</SNAME>
+    <RCLASS>KL402</RCLASS>
+    <BEGDATE>2006-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>33</KLIKOID>
+    <IDR>226198</IDR>
+    <NAME>Сведения об инвестициях уполномоченного банка</NAME>
+    <SNAME>KPB</SNAME>
+    <RCLASS>KNB</RCLASS>
+    <BEGDATE>2004-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>34</KLIKOID>
+    <IDR>471687</IDR>
+    <NAME>Сведения о расчетах по операциям с ценными бумагами, совершенных между резидентами и нерезидентами</NAME>
+    <SNAME>KNE</SNAME>
+    <RCLASS>F405</RCLASS>
+    <BEGDATE>2006-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>35</KLIKOID>
+    <IDR>3717733</IDR>
+    <NAME>Сведения о расчетах резидентов с нерезидентами по операциям с производными финансовыми инструментами и прочим срочным сделкам</NAME>
+    <SNAME>KTL</SNAME>
+    <RCLASS>KL406</RCLASS>
+    <BEGDATE>2011-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>36</KLIKOID>
+    <IDR>487354</IDR>
+    <NAME>Сведения о переводах физ. лиц из РФ и переводах в РФ в пользу физ. лиц и расчетах физ.лиц-резидентов с нерез.</NAME>
+    <SNAME>KWE</SNAME>
+    <RCLASS>F407</RCLASS>
+    <BEGDATE>2007-07-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>37</KLIKOID>
+    <IDR>3759172</IDR>
+    <NAME>Сведения об активах и обязательствах уполномоченного банка по видам валют и странам (форма 0409410)</NAME>
+    <SNAME>KRX</SNAME>
+    <RCLASS>KL410</RCLASS>
+    <BEGDATE>2012-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>37</KLIKOID>
+    <IDR>423131</IDR>
+    <NAME>Отчет уполномоченного банка об иностранных операциях (форма 0409401)</NAME>
+    <SNAME>KDD</SNAME>
+    <RCLASS>KL401</RCLASS>
+    <BEGDATE>2012-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>38</KLIKOID>
+    <IDR>86951</IDR>
+    <NAME>Отчет об операциях с наличной иностранной валютой и чеками в иностранной валюте</NAME>
+    <SNAME>KNA</SNAME>
+    <RCLASS>KL601</RCLASS>
+    <BEGDATE>2005-03-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>39</KLIKOID>
+    <IDR>585960</IDR>
+    <NAME>(Месячная) Форма 0409634. Отчет об открытых валютных позициях</NAME>
+    <SNAME>KIG</SNAME>
+    <RCLASS>OVP</RCLASS>
+    <BEGDATE>2006-03-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>39</KLIKOID>
+    <IDR>585961</IDR>
+    <NAME>(Внутримесячные даты) Форма 0409634. Отчет об открытых валютных позициях</NAME>
+    <SNAME>KJG</SNAME>
+    <RCLASS>OVP</RCLASS>
+    <BEGDATE>2006-02-21T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>39</KLIKOID>
+    <IDR>466766</IDR>
+    <NAME>Балансовая отчетность (форма 134)</NAME>
+    <SNAME>KHE</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>1998-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>39</KLIKOID>
+    <IDR>586310</IDR>
+    <NAME>(Декадная) Форма 0409634. Отчет об открытых валютных позициях</NAME>
+    <SNAME>KKG</SNAME>
+    <RCLASS>OVP</RCLASS>
+    <BEGDATE>2006-03-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>39</KLIKOID>
+    <IDR>3835735</IDR>
+    <NAME>Форма 0409123. Расчет собственных средств (капитала) (Базель III)</NAME>
+    <SNAME>KAN</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2014-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>40</KLIKOID>
+    <IDR>499389</IDR>
+    <NAME>Справка о внутреннем контроле (форма 639)</NAME>
+    <SNAME>KLF</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2005-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>41</KLIKOID>
+    <IDR>414666</IDR>
+    <NAME>Оперативный отчет о движении средств в иностранной валюте на транзитных валютных счетах резидентов</NAME>
+    <SNAME>KNC</SNAME>
+    <RCLASS>F652</RCLASS>
+    <BEGDATE>2006-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>42</KLIKOID>
+    <IDR>496595</IDR>
+    <NAME>Ф664 Отчет о валютных операциях, осуществляемых по счетам клиентов в уп. банках</NAME>
+    <SNAME>KGF</SNAME>
+    <RCLASS>F664</RCLASS>
+    <BEGDATE>2004-11-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>42</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2007-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>43</KLIKOID>
+    <IDR>3889989</IDR>
+    <NAME>Ф664 (декадная) Отчет о валютных операциях, осуществляемых по счетам клиентов в уп. банках</NAME>
+    <SNAME>KRO</SNAME>
+    <RCLASS>F664</RCLASS>
+    <BEGDATE>2015-07-11T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>44</KLIKOID>
+    <IDR>466096</IDR>
+    <NAME>Депозитарный отчет (с 01.07.2004)</NAME>
+    <SNAME>KKE</SNAME>
+    <RCLASS>DEP_KO</RCLASS>
+    <BEGDATE>2005-07-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>44</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2012-03-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>45</KLIKOID>
+    <IDR>3695397</IDR>
+    <NAME>Извещение КО о получении сообщений о результатах регулирования обязательных резервов</NAME>
+    <SNAME>KYK</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2010-03-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>46</KLIKOID>
+    <IDR>458966</IDR>
+    <NAME>Обязательные резервы (внеочередное регулирование)</NAME>
+    <SNAME>KND</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2010-12-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>46</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>47</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (внеочередное регулирование)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2008-08-18T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>48</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2013-07-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>48</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2013-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>49</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2013-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>49</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2013-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>50</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2013-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>51</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2012-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>51</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>52</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>52</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2011-12-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>53</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2011-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>53</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>54</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>54</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2011-04-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>55</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>55</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2011-03-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>56</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2010-03-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>56</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2010-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>57</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2009-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>57</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2009-12-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>58</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2009-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>58</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2009-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>59</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2008-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>59</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2008-10-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>60</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2008-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>60</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2008-10-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>61</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2008-09-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>61</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2008-05-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>62</KLIKOID>
+    <IDR>104929</IDR>
+    <NAME>Обязательные резервы (месячный отчет)</NAME>
+    <SNAME>KFB</SNAME>
+    <RCLASS>NEWFOR</RCLASS>
+    <BEGDATE>2013-07-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>62</KLIKOID>
+    <IDR>466471</IDR>
+    <NAME>Балансовая отчетность (форма 101)</NAME>
+    <SNAME>K3</SNAME>
+    <RCLASS>NEWBAL</RCLASS>
+    <BEGDATE>2013-02-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>63</KLIKOID>
+    <IDR>559701</IDR>
+    <NAME>Извещение КО о принятии (непринятии) файлов, включенных в архивный файл</NAME>
+    <SNAME>KXF</SNAME>
+    <RCLASS>IZV_KO</RCLASS>
+    <BEGDATE>2005-09-29T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>64</KLIKOID>
+    <IDR>3830766</IDR>
+    <NAME>ф.815 Отчёт о финансовом положении кредитной организации</NAME>
+    <SNAME>KPM</SNAME>
+    <RCLASS>PUBL</RCLASS>
+    <BEGDATE>2013-07-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>64</KLIKOID>
+    <IDR>3831467</IDR>
+    <NAME>ф.816 Отчёт о совокупном доходе кредитной организации</NAME>
+    <SNAME>KRM</SNAME>
+    <RCLASS>PUBL</RCLASS>
+    <BEGDATE>2013-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>64</KLIKOID>
+    <IDR>3831468</IDR>
+    <NAME>ф.817 Отчёт о движении денежных средств кредитной организации</NAME>
+    <SNAME>KSM</SNAME>
+    <RCLASS>PUBL</RCLASS>
+    <BEGDATE>2013-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+  <forms>
+    <KLIKOID>64</KLIKOID>
+    <IDR>3831077</IDR>
+    <NAME>ф.818 Отчёт об изменениях в капитале кредитной организации</NAME>
+    <SNAME>KTM</SNAME>
+    <RCLASS>PUBL</RCLASS>
+    <BEGDATE>2013-01-01T00:00:00+03:00</BEGDATE>
+  </forms>
+</NewDataSet>

@@ -11,35 +11,30 @@ namespace CreateDataReader
     {
         static void Main(string[] args)
         {
+           
 
-            Digest MyDigest = new Digest();
-
+            //поиск kliko
             /*
-            MyDigest.Digestpatch = @"d:\Cliko22\DATA\CFG\KLIKOCFG.DB";
+            //обьявляем класс для посиа
+            Finder Finders = new Finder();
+            //указываем папку где искать 
+            Finders.StartPatch = @"o:\";
 
-            MyDigest.ADDRowDigest();
-
-            MyDigest.Digestpatch = @"d:\Cliko2\DATA\CFG\KLIKOCFG.DB";
-
-            MyDigest.ADDRowDigest();
-
-            MyDigest.Digestpatch = @"d:\Cliko\DATA\CFG\KLIKOCFG.DB";
-
-            MyDigest.ADDRowDigest();
-
-
-            MyDigest.Digestpatch = @"d:\Cliko2\DATA\CFG\KLIKOCFG.DB";
-
-            MyDigest.ADDRowDigest();
+            Console.WriteLine("начинаем искать ");
+            //запускаем поиск в гугле мож че найдет )) 
+            Finders.gogle();
             */
 
-        // string[] a=   Directory.GetDirectories(@"d:\Cliko2\DATA\CFG\KLIKOCFG.DB");
+            FORMSKLIKO MyReader = new FORMSKLIKO();
 
-            File.GetAttributes(@"d:\Cliko2\DATA\CFG\KLIKOCFG.DB");
+            MyReader.GetFormList();
+            //GetFormList();
 
-            //
-            Console.WriteLine("готово"+a[0]);
-            Console.ReadKey();
+           
+
+
+            
+           // Console.ReadKey();
         }
     }
 }
