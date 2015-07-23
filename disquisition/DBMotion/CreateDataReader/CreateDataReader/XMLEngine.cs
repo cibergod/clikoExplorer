@@ -58,6 +58,32 @@ namespace CreateDataReader
              }
             return ResultQWERY;
         }
+
+        public bool TableExist(string TableName) 
+        {
+            if (File.Exists(TableName + ".xml"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool ExistRow(string expresion, string TableName) 
+        {
+            bool Exist = false;
+            if (File.Exists(TableName + ".xml"))
+            {
+                //загружаем данные из файла
+                DataTable tmpLoad = LoadDataTablefromXML(TableName);
+                 //если у таблицы есть данные 
+                if (tmpLoad.Rows.Count > 0) 
+                {
+                    Exist = true;
+                }
+            }
+            return Exist;
+        }
+
         //Функция создания таблицы
         public DataTable CreateTable(string NameTable, List<DataColumn> collumns)
         {
