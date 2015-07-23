@@ -27,8 +27,7 @@ namespace CreateDataReader
             }
             return Max;
         }
-
-        //функция выполнения запросов к указанной базе данных 
+        //функция выполнения запросов к указанной базе таблице 
         public DataRow[] SelectData(string expresion, string TableName)
         {
             DataRow[] ResultQWERY= null;
@@ -59,7 +58,6 @@ namespace CreateDataReader
              }
             return ResultQWERY;
         }
-
         //Функция создания таблицы
         public DataTable CreateTable(string NameTable, List<DataColumn> collumns)
         {
@@ -73,8 +71,6 @@ namespace CreateDataReader
             //возвращаем таблицу в виде набора столбцов
             return NewTable;
         }
-
-
         //функция записи таблицы в XML формат
         public void SaveDataTableInXML(DataTable TableForSave)
         {
