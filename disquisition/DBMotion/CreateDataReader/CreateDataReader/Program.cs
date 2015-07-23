@@ -25,8 +25,8 @@ namespace CreateDataReader
                 FORMSKLIKO MyReader = new FORMSKLIKO();
                 MyReader.GetFormList();
             /**************************************************************/
-            SPR MySRPFinder = new SPR();
-            MySRPFinder.GetDirectory();
+            SPR S = new SPR();
+            S.createAdress();
 
             Console.WriteLine("END");
             Console.ReadKey();

@@ -70,7 +70,7 @@ namespace CreateDataReader
 
         public bool ExistRow(string expresion, string TableName) 
         {
-            bool Exist = false;
+            bool Exist = true;
             if (File.Exists(TableName + ".xml"))
             {
                 //загружаем данные из файла
@@ -78,7 +78,7 @@ namespace CreateDataReader
                  //если у таблицы есть данные 
                 if (tmpLoad.Rows.Count > 0) 
                 {
-                    Exist = true;
+                    Exist = false;
                 }
             }
             return Exist;

@@ -6,7 +6,6 @@
           <xs:element name="directory">
             <xs:complexType>
               <xs:sequence>
-                <xs:element name="IDKLIKOFRORM" type="xs:int" minOccurs="0" />
                 <xs:element name="IDS" type="xs:int" minOccurs="0" />
                 <xs:element name="SNAME" type="xs:string" minOccurs="0" />
                 <xs:element name="FNAME" type="xs:string" minOccurs="0" />
@@ -19,7 +18,6 @@
     </xs:element>
   </xs:schema>
   <directory>
-    <IDKLIKOFRORM>5</IDKLIKOFRORM>
     <IDS>452865</IDS>
     <SNAME>План счетов</SNAME>
     <FNAME>ps_work.db</FNAME>
