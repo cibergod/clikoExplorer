@@ -531,10 +531,13 @@ namespace CreateDataReader
 
     }
 
+
+    
    
     class SPR 
     {
-      
+        //класс работы с базой данных 
+        ReadDB SQLEngine = new ReadDB();
         
         //читаем список отчетностей
         XMLEngine ReaderXML = new XMLEngine();
@@ -556,6 +559,40 @@ namespace CreateDataReader
             else return null;
         }
 
+        //нахождение самой чвежей папки со справочниками 
+        string CurrentDyrectory(string patch) 
+        {
+            int max = 0;
+            DirectoryInfo MyDir;
+            string  CurentMaxPatch = ""; //результат отбора директорий 
+            try
+            {
+                string[] ListDir = Directory.GetDirectories(patch);
+                foreach (string N in ListDir)
+                {
+                    MyDir = new DirectoryInfo(N);
+                    try
+                    {
+                        //отсеиваем все нецифровые директории 
+                        int cur = Convert.ToInt32(MyDir.Name);
+                        if (cur > max) 
+                        {
+                            CurentMaxPatch = N;
+                        }
+
+                        
+                    }
+                    catch { }
+                }
+            }
+            catch 
+            {
+                //либо нет доступа либо нет папки 
+            }
+            return CurentMaxPatch;
+            
+        }
+
       
 
       public void createAdress()
@@ -575,14 +612,31 @@ namespace CreateDataReader
                 {
                    
                     string PatchDirectory = GetPatchDir(RearDigest["patch"].ToString()) + "\\" + ReadForm["SNAME"].ToString() + "\\";
-                    Console.WriteLine(PatchDirectory);
-                    
-                    //MyTaskList.GetList = new GetSRPList();
-                    //MyTaskList.GetList.SPR_patch = PatchDirectory;
-                    //MyTaskList.Task = new Thread(MyTaskList.GetList.Search);
-                    //MyTaskList.Task.Start();
+                    //будем брать 1 последнюю папку и вней смотреть все валидные справочники
+                    string CurrentPatch=CurrentDyrectory(PatchDirectory);
 
-                    //TASK.Add(MyTaskList);
+                    if (CurrentPatch != "") 
+                    {
+                        Console.WriteLine(CurrentPatch);
+                        //можно собирать информацию 
+                        SQLEngine.patch = CurrentPatch;
+                        //читать будем следующие значения 
+                        /*
+                         IDS   - уникальный номер справочника 
+                         SNAME - название справочника
+                         SSQLD - SQL из которого возьмем имя файла справочника
+                         SFDBF - имя файла для обновления справочника
+                         */
+                        SQLEngine.SQL = "SELECT IDS, SNAME, SSQLD, SFDBF FROM rsprav";
+                         //запускаем запрос 
+                        SQLEngine.getSQL();
+                        //читаем результат
+                        foreach (DataRow ResultQWERY in SQLEngine.Result.Rows)
+                        {
+                            Console.WriteLine(ResultQWERY["SNAME"]);
+                        }
+
+                    } 
 
                 }
 
