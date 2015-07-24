@@ -70,18 +70,21 @@ namespace CreateDataReader
 
         public bool ExistRow(string expresion, string TableName) 
         {
-            bool Exist = true;
-            if (File.Exists(TableName + ".xml"))
+            //если табличка существует то проверяем запись 
+            if (TableExist(TableName)) 
             {
-                //загружаем данные из файла
-                DataTable tmpLoad = LoadDataTablefromXML(TableName);
-                 //если у таблицы есть данные 
-                if (tmpLoad.Rows.Count > 0) 
+                //загружаем таблицу с данными
+                DataTable DB=LoadDataTablefromXML(TableName);
+                //смотрим что в ней есть
+                DataRow[] Rows = DB.Select(expresion);
+                if (Rows.Length > 0)
                 {
-                    Exist = false;
+                    return true;
                 }
+                else return false;
             }
-            return Exist;
+            
+            return false;
         }
 
         //Функция создания таблицы

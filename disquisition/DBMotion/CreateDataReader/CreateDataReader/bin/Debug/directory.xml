@@ -23,4 +23,10 @@
     <FNAME>ps_work.db</FNAME>
     <FUPDATE>PS_WORK</FUPDATE>
   </directory>
+  <directory>
+    <IDS>452865</IDS>
+    <SNAME>План счетов</SNAME>
+    <FNAME>ps_work.db</FNAME>
+    <FUPDATE>PS_WORK</FUPDATE>
+  </directory>
 </NewDataSet>

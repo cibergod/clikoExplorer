@@ -538,15 +538,14 @@ namespace CreateDataReader
     {
         //класс работы с базой данных 
         ReadDB SQLEngine = new ReadDB();
-        
         //читаем список отчетностей
         XMLEngine ReaderXML = new XMLEngine();
-        
         //имя таблицы с формами
         string NameFormTable = "forms";
         //имя таблицы с отчетностями 
         string NameDigestTable = "Digest";
-
+        //имя таблицы списка справочников в формах
+        string NameDirectory = "directory";
         //получим чистый адресс без имени файла
         string GetPatchDir(string P)
         {
@@ -558,7 +557,6 @@ namespace CreateDataReader
             }
             else return null;
         }
-
         //нахождение самой чвежей папки со справочниками 
         string CurrentDyrectory(string patch) 
         {
@@ -592,8 +590,139 @@ namespace CreateDataReader
             return CurentMaxPatch;
             
         }
+        //функция создания новой таблицы
+        DataTable InitFormTable()
+        {
 
-      
+            //класс солбца который будем созадвать 
+            DataColumn Column;
+            //создаем перечень столбцов таблицы содержащей данные о форме 
+            List<DataColumn> ListColums = new List<DataColumn>();
+            //приводим таблицу к нужному формату
+            //уникальный номер записи ключик 
+
+            //IDS   - уникальный номер справочника
+            Column = new DataColumn()
+            {
+                ColumnName = "IDS",
+                DataType = System.Type.GetType("System.Int32")
+            };
+            //добавляем его в список 
+            ListColums.Add(Column);
+            //SNAME - название справочника
+            Column = new DataColumn()
+            {
+                ColumnName = "SNAME",
+                DataType = System.Type.GetType("System.String")
+            };
+            //добавляем его в список 
+            ListColums.Add(Column);
+
+            //FNAME (SSQLD)- Имя файла справочника
+            Column = new DataColumn()
+            {
+                ColumnName = "FNAME",
+                DataType = System.Type.GetType("System.String")
+            };
+            //добавляем его в список 
+            ListColums.Add(Column);
+
+            //FUPDATE (SFDBF) имя файла для обновления справочника
+            Column = new DataColumn()
+            {
+                ColumnName = "FUPDATE",
+                DataType = System.Type.GetType("System.String")
+            };
+            //добавляем его в список 
+            ListColums.Add(Column);
+            //создаем таблицу directory
+            return ReaderXML.CreateTable(NameDirectory, ListColums);
+
+
+        }
+
+        //убрать непечатаемые символы из строки с названием 
+        static string CutChar(string Name)
+        {
+            string buf = "";
+            foreach (char S in Name)
+            {
+                if ((S != '\n') && (S != '\r')) buf += S;
+            }
+            return buf;
+        }
+
+        //получить из SQL текста последнее слово это будет имя файла со справочником 
+        static string ShrinkSQL(string name)
+        {
+            //режим строку пробелами 
+            string[] M = name.Split(' ');
+            //получаем длинну строки
+            int S = M.Length;
+            //расчитываем позицию последнего слова
+            S--;
+            //собираем результат
+            string result = CutChar(M[S]);
+            //прибавляем расширение к файлу 
+            return result + ".db";
+        }
+        //конвертируем прочитанные значения в правельные параметры 
+        DataRow CreateRow(DataTable T, DataRow R)
+        {
+            //создаем новую запись в таблице 
+            DataRow NR = T.NewRow();
+            //уникальный номер справочника
+            NR["IDS"] = Convert.ToInt32(R["IDS"]);
+            //SNAME - название справочника
+            NR["SNAME"] = CutChar(R["SNAME"].ToString());
+            //FNAME (SSQLD)- Имя файла справочника
+            NR["FNAME"] = ShrinkSQL(R["SSQLD"].ToString());
+            //FUPDATE (SFDBF) имя файла для обновления справочника
+            NR["FUPDATE"] = R["SFDBF"].ToString();
+            return NR;
+        }
+
+        //пробуем добавить запись о справочнике в таблицу
+        void TryAddRow(DataRow NewRow) 
+        {
+            DataTable DIR; //таблица в которую будем добавлять ифномацию
+            //Проверим существует ли директория 
+            if (ReaderXML.TableExist(NameDirectory))
+            {
+                //если файл существует то загружаем таблицу
+                DIR = ReaderXML.LoadDataTablefromXML(NameDirectory);
+                //добавляем уникальные записи к существующим в таблице
+                if (ReaderXML.ExistRow("IDS='" + NewRow["IDS"].ToString() + "'", NameDirectory))
+                {
+                    //создаем строку для добавления в таблицу
+                    DataRow M = CreateRow(DIR, NewRow);
+                    //добавляем запись в табличку
+                    DIR.Rows.Add(M);
+                    //Сохраняем табличку 
+                    ReaderXML.SaveDataTableInXML(DIR);
+                    Console.WriteLine(NewRow["SNAME"].ToString() + " Добавлен в справочники");
+                }
+                else 
+                {
+                    //сообщаем о дублировании справочника
+                     Console.WriteLine(NewRow["SNAME"].ToString() + " уже есть в базе ");
+                }
+
+            }
+            else //если таблицы не существует то создаим новую и добавим в нее данные 
+            {
+                //создаем нову таблицу
+                DIR = InitFormTable();
+                //создаем строку для добавления в таблицу
+                DataRow M = CreateRow(DIR, NewRow);
+                //добавляем запись в табличку
+                DIR.Rows.Add(M);
+                //Сохраняем табличку в файл 
+                ReaderXML.SaveDataTableInXML(DIR);
+            }
+
+        }
+
 
       public void createAdress()
         {
@@ -630,10 +759,14 @@ namespace CreateDataReader
                         SQLEngine.SQL = "SELECT IDS, SNAME, SSQLD, SFDBF FROM rsprav";
                          //запускаем запрос 
                         SQLEngine.getSQL();
-                        //читаем результат
+
+                       
+                        //читаем результат 
                         foreach (DataRow ResultQWERY in SQLEngine.Result.Rows)
                         {
                             Console.WriteLine(ResultQWERY["SNAME"]);
+                            //пробуем сохранить данные о справочнике в таблицу
+                            TryAddRow(ResultQWERY);
                         }
 
                     } 

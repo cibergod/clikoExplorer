@@ -28,8 +28,8 @@ namespace CreateDataReader
             SPR S = new SPR();
             S.createAdress();
 
-            Console.WriteLine("END");
-            Console.ReadKey();
+            //Console.WriteLine("END");
+            //Console.ReadKey();
         }
     }
 }
