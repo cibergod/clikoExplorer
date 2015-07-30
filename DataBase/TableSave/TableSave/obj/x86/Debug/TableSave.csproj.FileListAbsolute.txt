@@ -5,3 +5,4 @@ D:\Develop\github\clikoExplorer\DataBase\TableSave\TableSave\obj\x86\Debug\Table
 D:\Develop\github\clikoExplorer\DataBase\TableSave\TableSave\bin\Debug\RWXMLTABLE.dll
 D:\Develop\github\clikoExplorer\DataBase\TableSave\TableSave\bin\Debug\RWXMLTABLE.pdb
 D:\Develop\github\clikoExplorer\DataBase\TableSave\TableSave\obj\x86\Debug\TableSave.csprojResolveAssemblyReference.cache
+D:\Develop\github\clikoExplorer\DataBase\TableSave\TableSave\bin\Debug\TableSave.exe.config
